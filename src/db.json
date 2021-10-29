@@ -1,0 +1,62 @@
+
+{
+    "posts": [
+      {
+        "id": 1,
+        "title": "hello"
+      }
+    ],
+    "categories": [
+      {
+        "id": 0, "name": "Order", "children": []
+      },
+      { 
+        "id": 1, "name": "Điện thoại và phụ kiện", "children": [
+          {
+              "id": 2, "name": "Máy tính bảng", "children": []
+          },
+          {
+            "id": 3, "name": "Điện thoại di động", "children": []
+          },
+          {
+            "id": 4, "name": "Khác", "children": []
+          },
+          {
+            "id": 5, "name": "Thiết bị đeo", "children": [
+              {
+                "id": 6, "name": "Thiết bị VR", "children": []
+              },
+              {
+                "id": 7, "name": "Theo dõi GPS", "children": []
+              }
+            ]
+          }
+        ] 
+      },
+      { 
+        "id": 8, "name": "Thú cưng", "children": [
+          {
+            "id": 9, "name": "Đồ ăn thú cưng", "children": []
+          },
+          {
+            "id": 10, "name": "Toilet", "children": []
+          },
+          {
+            "id": 11, "name": "Phụ kiện thú cưng", "children": [
+              {
+                "id": 12, "name": "Đồ chơi", "children": [
+                  {
+                    "id": 13, "name": "Đồ chơi cho chó mèo", "children": []
+                  },
+                  {
+                    "id": 14, "name": "Đồ chơi cho chim", "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ] 
+      }
+    ]
+  }
+  
