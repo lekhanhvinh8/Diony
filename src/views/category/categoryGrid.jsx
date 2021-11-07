@@ -1,17 +1,14 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { expandCategory, narrowCategory } from "../../app/store/categoriesPage";
-import { useDispatch } from "react-redux";
 import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  IconButton,
-  TextField,
-} from "@mui/material";
+  expandCategory,
+  narrowCategory,
+  updateColumnField,
+} from "../../app/store/ui/categoriesPage";
+import { useDispatch } from "react-redux";
+import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import EditIcon from "@mui/icons-material/Edit";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button } from "@mui/material";
 import Switch from "@mui/material/Switch";
@@ -19,13 +16,18 @@ import AddIcon from "@mui/icons-material/Add";
 import {
   statusColumnField,
   buttonExpandColumnField,
-} from "../../app/store/categoriesPage";
+} from "../../app/store/ui/categoriesPage";
 import { useState } from "react";
 import CategoryForm from "./categoryForm";
+import { changeStatus } from "./../../app/store/ui/categoriesPage";
+import { rootCategoryId } from "../../app/store/entities/categories";
 
 const useStyles = makeStyles({
   root: {
     "& .MuiDataGrid-cell:focus-within, & .MuiDataGrid-cell:focus": {
+      outline: "none",
+    },
+    "& .MuiDataGrid-columnHeader:focus-within": {
       outline: "none",
     },
     "& .MuiDataGrid-row:hover": {
@@ -37,9 +39,16 @@ const useStyles = makeStyles({
   },
 });
 
-const CategoryGrid = ({ rows, columns, fatherId, pageSize, rowsPerPage }) => {
+const CategoryGrid = ({
+  rows,
+  columns,
+  mainColumnIndex,
+  fatherId,
+  pageSize,
+}) => {
   const [selectionModel, setSelectionModel] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [updatedCategoryId, setUpdatedCategoryId] = useState(rootCategoryId);
   const dispatch = useDispatch();
   const classes = useStyles();
 
@@ -59,15 +68,15 @@ const CategoryGrid = ({ rows, columns, fatherId, pageSize, rowsPerPage }) => {
           const cateId = params.row.id;
           return (
             <IconButton
-              onClick={() =>
-                params.row.isExpand
+              onClick={() => {
+                return params.row[buttonExpandColumnField]
                   ? handleNarrow(cateId)
-                  : handleExpand(cateId)
-              }
+                  : handleExpand(cateId);
+              }}
               aria-label="delete"
               size="small"
             >
-              {params.row.isExpand ? (
+              {params.row[buttonExpandColumnField] ? (
                 <ArrowBackIosIcon />
               ) : (
                 <ArrowForwardIosIcon />
@@ -80,9 +89,24 @@ const CategoryGrid = ({ rows, columns, fatherId, pageSize, rowsPerPage }) => {
           return (
             <Switch
               checked={params.value}
-              onChange={() => {}}
+              onChange={(event) => {
+                dispatch(changeStatus(params.row.id, event.target.checked));
+              }}
               inputProps={{ "aria-label": "controlled" }}
             />
+          );
+        }
+
+        if (c.field === updateColumnField) {
+          return (
+            <IconButton
+              onClick={() => {
+                setUpdatedCategoryId(params.row.id);
+                setDialogOpen(true);
+              }}
+            >
+              <EditIcon />
+            </IconButton>
           );
         }
 
@@ -102,39 +126,52 @@ const CategoryGrid = ({ rows, columns, fatherId, pageSize, rowsPerPage }) => {
         flexDirection: "column",
       }}
     >
-      <Button
-        style={{ width: 40 }}
-        size="small"
-        variant="contained"
-        endIcon={<AddIcon />}
-        onClick={() => setDialogOpen(true)}
-      >
-        new
-      </Button>
-
       <Dialog
         open={dialogOpen}
         onClose={() => setDialogOpen(false)}
         fullWidth={true}
         maxWidth={"sm"}
       >
-        <DialogTitle>New category</DialogTitle>
+        <DialogTitle>
+          {updatedCategoryId ? "Update category" : "New category"}
+        </DialogTitle>
         <DialogContent>
-          <CategoryForm fatherId={fatherId} setDialogOpen={setDialogOpen} />
+          <CategoryForm
+            fatherId={fatherId}
+            setDialogOpen={setDialogOpen}
+            updatedCateId={updatedCategoryId}
+          />
         </DialogContent>
       </Dialog>
+
+      <Button
+        style={{ width: 40 }}
+        size="small"
+        variant="contained"
+        endIcon={<AddIcon />}
+        onClick={() => {
+          setUpdatedCategoryId(rootCategoryId);
+          setDialogOpen(true);
+        }}
+      >
+        new
+      </Button>
 
       <div style={{ height: 410, width: "100%" }}>
         <DataGrid
           rows={rows}
           columns={columns}
           pageSize={pageSize}
-          rowsPerPageOptions={[rowsPerPage]}
+          rowsPerPageOptions={[pageSize]}
           disableColumnSelector
           className={classes.root}
           selectionModel={selectionModel}
           onCellClick={(row) => {
-            if (row.field !== statusColumnField) setSelectionModel([row.id]);
+            if (
+              row.field !== statusColumnField &&
+              row.field !== updateColumnField
+            )
+              setSelectionModel([row.id]);
           }}
         />
       </div>

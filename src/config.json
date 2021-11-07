@@ -1,3 +1,13 @@
 {
-    "apiUrl": "http://localhost:5000/api/"
+    "apiUrl": "http://localhost:5000/api/",
+    "typingPropertyTypeName": [
+        {
+            "codeName": "text",
+            "name": "Text"
+        }, 
+        {
+            "codeName": "date",
+            "name": "Date"
+        }
+    ]
 }

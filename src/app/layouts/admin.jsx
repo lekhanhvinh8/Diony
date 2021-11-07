@@ -17,6 +17,12 @@ import styles from "./jss/material-dashboard-react/layouts/adminStyle";
 import bgImage from "./images/sidebar-2.jpg";
 import logo from "./images/reactlogo.png";
 
+import { loadCategories } from "../store/entities/categories";
+import { loadSelectProperties } from "../store/entities/selectProperties";
+import { useDispatch } from "react-redux";
+import { initializeGird } from "../store/ui/categoriesPage";
+import { loadTypingProperties } from "../store/entities/typingProperties";
+
 let ps;
 
 const switchRoutes = (
@@ -40,28 +46,17 @@ const switchRoutes = (
 const useStyles = makeStyles(styles);
 
 export default function Admin({ ...rest }) {
+  const dispatch = useDispatch();
+
   // styles
   const classes = useStyles();
   // ref to help us initialize PerfectScrollbar on windows devices
   const mainPanel = React.createRef();
   // states and functions
-  const [image, setImage] = React.useState(bgImage);
-  const [color, setColor] = React.useState("blue");
-  const [fixedClasses, setFixedClasses] = React.useState("dropdown show");
+  const [image] = React.useState(bgImage);
+  const [color] = React.useState("blue");
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const handleImageClick = (image) => {
-    setImage(image);
-  };
-  const handleColorClick = (color) => {
-    setColor(color);
-  };
-  const handleFixedClick = () => {
-    if (fixedClasses === "dropdown") {
-      setFixedClasses("dropdown show");
-    } else {
-      setFixedClasses("dropdown");
-    }
-  };
+
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -82,6 +77,17 @@ export default function Admin({ ...rest }) {
       });
       document.body.style.overflow = "hidden";
     }
+
+    //initialize some states
+    const asyncFunc = async () => {
+      await dispatch(loadCategories());
+      await dispatch(initializeGird());
+      await dispatch(loadSelectProperties());
+      await dispatch(loadTypingProperties());
+    };
+
+    asyncFunc();
+
     window.addEventListener("resize", resizeFunction);
     // Specify how to clean up after this effect:
     return function cleanup() {
@@ -90,7 +96,7 @@ export default function Admin({ ...rest }) {
       }
       window.removeEventListener("resize", resizeFunction);
     };
-  }, [mainPanel]);
+  }, [mainPanel]); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <div className={classes.wrapper}>
       <Sidebar

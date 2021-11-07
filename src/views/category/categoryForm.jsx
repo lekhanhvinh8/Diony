@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from "react";
 import Joi from "joi";
-import {
-  validate,
-  renderButton,
-  renderInput,
-} from "./../../app/layouts/common/formUtil";
+import { validate, renderInput } from "./../../app/layouts/common/formUtil";
 import { getCategory } from "../../app/services/categoriesService";
 import { Button, DialogActions } from "@mui/material";
-import { createCategory } from "./../../app/services/categoriesService";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addCategory,
+  removeCategory,
+  updateCategory,
+} from "../../app/store/ui/categoriesPage";
+import {
+  hasChildren,
+  rootCategoryId,
+} from "../../app/store/entities/categories";
+import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
+import { Link } from "react-router-dom";
 
 const cateIdField = "cateId";
 const nameField = "name";
@@ -23,24 +31,36 @@ const schemaMap = {
 
 const schema = Joi.object().keys(schemaMap);
 
-const CategoryForm = ({ fatherId, setDialogOpen, update = false }) => {
+const CategoryForm = ({
+  fatherId,
+  setDialogOpen,
+  updatedCateId = rootCategoryId,
+}) => {
   const [cateId, setCateId] = useState(0);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [status, setStatus] = useState(false);
   const [father, setFather] = useState("root");
   const [errors, setErrors] = useState({});
 
+  const dispatch = useDispatch();
+  const cateHasChildren = useSelector(hasChildren(updatedCateId));
   useEffect(() => {
     const asyncFunc = async () => {
-      if (fatherId !== -1) {
+      if (fatherId !== rootCategoryId) {
         const category = await getCategory(fatherId);
         setFather(category.name);
+      }
+
+      if (updatedCateId !== rootCategoryId) {
+        const category = await getCategory(updatedCateId);
+        setCateId(category.id);
+        setName(category.name);
+        setDescription(category.description);
       }
     };
 
     asyncFunc();
-  }, []);
+  }, [fatherId, updatedCateId]);
 
   const getAllData = () => {
     return {
@@ -70,9 +90,9 @@ const CategoryForm = ({ fatherId, setDialogOpen, update = false }) => {
 
     if (errors) return;
 
-    //do save something
-    const newCategory = await createCategory(getCateFromData());
-    console.log("Success", newCategory);
+    if (updatedCateId === rootCategoryId)
+      await dispatch(addCategory(fatherId, getCateFromData()));
+    else await dispatch(updateCategory(getCateFromData()));
   };
 
   return (
@@ -116,10 +136,27 @@ const CategoryForm = ({ fatherId, setDialogOpen, update = false }) => {
           schemaMap,
           { disabled: true }
         )}
-
-        {renderButton("Save", getAllData(), schema, {
-          className: "btn btn-success",
-        })}
+        {updatedCateId !== rootCategoryId && (
+          <div style={{ marginTop: 30 }}>
+            {!cateHasChildren && (
+              <Link to={"/admin/properties/" + updatedCateId}>
+                <Button color="success" endIcon={<MiscellaneousServicesIcon />}>
+                  View Properties
+                </Button>
+              </Link>
+            )}
+            <Button
+              color="error"
+              endIcon={<DeleteIcon />}
+              onClick={async () => {
+                await dispatch(removeCategory(updatedCateId));
+                setDialogOpen(false);
+              }}
+            >
+              Delete
+            </Button>
+          </div>
+        )}
       </form>
 
       <DialogActions>

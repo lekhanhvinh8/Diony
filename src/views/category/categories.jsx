@@ -1,11 +1,8 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import CategoryGrid from "./categoryGrid";
-import { initializeGird } from "./../../app/store/categoriesPage";
 import { makeStyles } from "@material-ui/core/styles";
-import { Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 import React from "react";
 
 const useStyles = makeStyles({
@@ -23,24 +20,19 @@ const useStyles = makeStyles({
 });
 
 const Categories = () => {
-  const dispatch = useDispatch();
   const mainGrid = useSelector((state) => state.ui.categoriesPage.mainGrid);
-  const isGridInit = useSelector(
-    (state) => state.ui.categoriesPage.isInitialized
-  );
+
   const classes = useStyles();
 
   useEffect(() => {
-    const initializeState = async () => {
-      await dispatch(initializeGird());
-    };
+    const asyncFunc = async () => {};
 
-    if (!isGridInit) initializeState();
+    asyncFunc();
   }, []);
 
   const row = { ...mainGrid.row };
   const rows = [row];
-  const columns = mainGrid.columns.map((c) => {
+  const columns = mainGrid.columns.map((c, index) => {
     const newCol = {
       ...c,
       renderCell: (params) => {
@@ -48,9 +40,9 @@ const Categories = () => {
           <CategoryGrid
             rows={[...params.value.rows]}
             columns={[...params.value.columns]}
+            mainColumnIndex={index}
             fatherId={params.value.fatherId}
-            pageSize={10}
-            rowsPerPage={1}
+            pageSize={5}
           />
         );
       },

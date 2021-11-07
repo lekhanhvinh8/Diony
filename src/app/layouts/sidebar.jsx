@@ -15,6 +15,7 @@ import Icon from "@material-ui/core/Icon";
 import AdminNavbarLinks from "./adminNavbarLinks";
 
 import styles from "./jss/material-dashboard-react/components/sidebarStyle";
+import { noneCateId } from './../../views/property/properties';
 
 const useStyles = makeStyles(styles);
 
@@ -23,12 +24,33 @@ export default function Sidebar(props) {
   let location = useLocation();
   // verifies if routeName is the one active (in browser input)
   function activeRoute(routeName) {
+    if (routeName.includes("/:")) {
+      const routeIndex = routeName.lastIndexOf("/:");
+      const newRoute = routeName.substring(0, routeIndex);
+
+      const pathIndex = location.pathname.lastIndexOf("/");
+      const newPath = location.pathname.substring(0, pathIndex);
+
+      return newRoute === newPath;
+    }
+
     return location.pathname === routeName;
   }
   const { color, logo, image, logoText, routes } = props;
   var links = (
     <List className={classes.list}>
       {routes.map((prop, key) => {
+        const generatePath = () => {
+          if (prop.path.includes("/:")) {
+            const index = prop.path.lastIndexOf("/:");
+            const newPath = prop.path.substring(0, index);
+
+            return prop.layout + newPath + "/" + noneCateId;
+          }
+
+          return prop.layout + prop.path;
+        };
+
         var activePro = " ";
         var listItemClasses;
         if (prop.path === "/upgrade-to-pro") {
@@ -44,9 +66,10 @@ export default function Sidebar(props) {
         const whiteFontClasses = classNames({
           [" " + classes.whiteFont]: activeRoute(prop.layout + prop.path),
         });
+
         return (
           <NavLink
-            to={prop.layout + prop.path}
+            to={generatePath()}
             className={activePro + classes.item}
             activeClassName="active"
             key={key}
