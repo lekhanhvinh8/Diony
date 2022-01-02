@@ -38,8 +38,6 @@ const ValuesDialog = ({ propId, dialogOpen, setDialogOpen }) => {
     if (propId) dispatch(reloadValues(propId));
   }, [propId, dispatch]);
 
-  console.log(loadding);
-
   return (
     <Dialog
       open={dialogOpen}

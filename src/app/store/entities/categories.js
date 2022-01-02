@@ -1,5 +1,8 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { getAllCategories } from "../../services/categoriesService";
+import {
+  getAllCategories,
+  updateImageService,
+} from "../../services/categoriesService";
 
 export const rootCategoryId = -1;
 
@@ -75,13 +78,25 @@ const slice = createSlice({
         categories.splice(index, 1);
       }
     },
+
+    categoryImageUrlUpdated: (categories, action) => {
+      const { cateId, newImageUrl } = action.payload;
+      const category = getCategoryById(cateId, categories);
+      if (category === null) return;
+      category.imageUrl = newImageUrl;
+    },
   },
 });
 
 export default slice.reducer;
 
-const { categoriesLoadded, categoryAdded, categoryUpdated, categoryRemoved } =
-  slice.actions;
+const {
+  categoriesLoadded,
+  categoryAdded,
+  categoryUpdated,
+  categoryRemoved,
+  categoryImageUrlUpdated,
+} = slice.actions;
 
 export const loadCategories = () => async (dispatch, getState) => {
   const categories = await getAllCategories();
@@ -102,7 +117,30 @@ export const removeCategoryToEntities = (cateId) => (dispatch, getState) => {
   dispatch(categoryRemoved({ cateId }));
 };
 
+export const updateImage = (cateId, newImageFile) => async (dispatch) => {
+  try {
+    const result = await updateImageService(cateId, newImageFile);
+    dispatch(
+      categoryImageUrlUpdated({
+        cateId: cateId,
+        newImageUrl: result.data.imageUrl,
+      })
+    );
+  } catch (error) {}
+};
+
 //selectors
+
+export const getCategory = (cateId) =>
+  createSelector(
+    (state) => state.entities.categories,
+    (categories) => {
+      if (cateId === rootCategoryId) return false;
+
+      const category = getCategoryById(cateId, categories);
+      return category;
+    }
+  );
 
 export const hasChildren = (cateId) =>
   createSelector(
@@ -147,6 +185,16 @@ export const getPath = (cateId) =>
   );
 
 //helper
+export const getCategoryById = (cateId, categories) => {
+  for (const category of categories) {
+    if (category.id === cateId) return category;
+
+    const childCate = getCategoryById(cateId, category.children);
+    if (childCate) return childCate;
+  }
+
+  return null;
+};
 
 export const getChildrenOfCategories = (cateId, categories) => {
   for (const category of categories) {

@@ -19,11 +19,16 @@
 import Dashboard from "@material-ui/icons/Dashboard";
 import Category from "@material-ui/icons/Category";
 import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
+import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
+import PendingActionsIcon from "@mui/icons-material/PendingActions";
 
 // core components/views for Admin layout
 import DashboardPage from "./views/dashboard/dashboard";
 import Categories from "./views/category/categories";
 import Properties from "./views/property/properties";
+import PendingOrders from "./views/pendingOrder/pendingOrders";
+import OrderDetail from "./views/orderDetail/orderDetail";
+import Shippers from "./views/shipper/shippers";
 
 const dashboardRoutes = [
   {
@@ -45,6 +50,25 @@ const dashboardRoutes = [
     name: "Property",
     icon: MiscellaneousServicesIcon,
     component: Properties,
+    layout: "/admin",
+  },
+  {
+    path: "/pending/",
+    name: "Pending Orders",
+    icon: PendingActionsIcon,
+    component: PendingOrders,
+    layout: "/admin",
+  },
+  {
+    path: "/shippers",
+    name: "Shipper",
+    icon: AssignmentIndIcon,
+    component: Shippers,
+    layout: "/admin",
+  },
+  {
+    path: "/order/:orderId",
+    component: OrderDetail,
     layout: "/admin",
   },
 ];

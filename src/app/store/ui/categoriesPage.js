@@ -9,6 +9,7 @@ import {
   createCategory,
   deleteCategory,
   updateCategory as updateCategoryService,
+  updateStatus,
 } from "../../services/categoriesService";
 
 const idColumnField = "idCol";
@@ -39,7 +40,7 @@ const cateGridColumns = [
   { field: nameColumnField, headerName: "Name", width: nameColumnWidth },
   {
     field: statusColumnField,
-    headerName: "Status",
+    headerName: "Visible",
     width: statusColumnWidth,
     sortable: false,
     filterable: false,
@@ -296,17 +297,21 @@ export const addCategory =
     dispatch(categoryAdded({ mainColumnIndex, newCategory }));
   };
 
-export const changeStatus = (cateId, newStatus) => (dispatch, getState) => {
-  const mainGrid = getState().ui.categoriesPage.mainGrid;
+export const changeStatus =
+  (cateId, newStatus) => async (dispatch, getState) => {
+    const mainGrid = getState().ui.categoriesPage.mainGrid;
 
-  const mainIndex = getIndexOfCateInGrid(cateId, mainGrid);
+    const mainIndex = getIndexOfCateInGrid(cateId, mainGrid);
 
-  if (mainIndex === null) return;
+    if (mainIndex === null) return;
 
-  const { mainColumnIndex, cateRowIndex } = mainIndex;
+    const { mainColumnIndex, cateRowIndex } = mainIndex;
 
-  dispatch(statusChanged({ mainColumnIndex, cateRowIndex, newStatus }));
-};
+    try {
+      await updateStatus(cateId, newStatus);
+      dispatch(statusChanged({ mainColumnIndex, cateRowIndex, newStatus }));
+    } catch (ex) {}
+  };
 
 export const updateCategory = (category) => async (dispatch, getState) => {
   const mainGrid = getState().ui.categoriesPage.mainGrid;

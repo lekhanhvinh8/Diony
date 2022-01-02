@@ -9,5 +9,43 @@
             "codeName": "date",
             "name": "Date"
         }
-    ]
+    ],
+    "paymentMethod": {
+        "paypal": "PAYPAL",
+        "cod": "COD"
+    },
+    "orderStatus": {
+        "all": {
+            "statusCode": "all",
+            "label": "Tất cả"
+        },
+        "pendingCheckout": {
+            "statusCode": "PENDING_CHECKOUT",
+            "label": "Pending Checkout"
+        },
+        "pendingApproval": {
+            "statusCode": "PENDING_APPROVAL",
+            "label": "Pending Approval"
+        },
+        "toShip": {
+            "statusCode": "TO_SHIP",
+            "label": "To Ship"
+        },
+        "toPickup": {
+            "statusCode": "TO_PICKUP",
+            "label": "To Pickup"
+        },
+        "shipping": {
+            "statusCode": "SHIPPING",
+            "label": "Shipping"
+        },
+        "shipped": {
+            "statusCode": "SHIPPED",
+            "label": "Shipped"
+        },
+        "cancelled": {
+            "statusCode": "CANCELLED",
+            "label": "Cancelled"
+        }
+    }
 }

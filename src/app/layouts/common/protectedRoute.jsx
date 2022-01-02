@@ -4,8 +4,7 @@ import auth from "../../services/authService";
 
 const ProtectedRoute = ({ path, ...rest }) => {
   const user = auth.getCurrentUser();
-
-  if (user) return <Route path={path} {...rest} />;
+  if (user && user.role === "Admin") return <Route path={path} {...rest} />;
   return (
     <Route
       render={(props) => (

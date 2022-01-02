@@ -15,7 +15,8 @@ import Icon from "@material-ui/core/Icon";
 import AdminNavbarLinks from "./adminNavbarLinks";
 
 import styles from "./jss/material-dashboard-react/components/sidebarStyle";
-import { noneCateId } from './../../views/property/properties';
+import { noneCateId } from "./../../views/property/properties";
+import { nextDay } from "date-fns/esm";
 
 const useStyles = makeStyles(styles);
 
@@ -40,6 +41,8 @@ export default function Sidebar(props) {
   var links = (
     <List className={classes.list}>
       {routes.map((prop, key) => {
+        if (!prop.name || !prop.icon) return null;
+
         const generatePath = () => {
           if (prop.path.includes("/:")) {
             const index = prop.path.lastIndexOf("/:");

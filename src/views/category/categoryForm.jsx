@@ -16,6 +16,7 @@ import {
 } from "../../app/store/entities/categories";
 import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
 import { Link } from "react-router-dom";
+import CategoryAvatar from "./categoryAvatar";
 
 const cateIdField = "cateId";
 const nameField = "name";
@@ -44,6 +45,7 @@ const CategoryForm = ({
 
   const dispatch = useDispatch();
   const cateHasChildren = useSelector(hasChildren(updatedCateId));
+
   useEffect(() => {
     const asyncFunc = async () => {
       if (fatherId !== rootCategoryId) {
@@ -98,10 +100,15 @@ const CategoryForm = ({
   return (
     <div>
       <form>
+        {updatedCateId !== rootCategoryId && (
+          <CategoryAvatar cateId={updatedCateId} />
+        )}
+
         {renderInput(
           cateIdField,
           "Id",
           cateId,
+          getAllData(),
           errors,
           setCateId,
           setErrors,
@@ -112,6 +119,7 @@ const CategoryForm = ({
           nameField,
           "Name",
           name,
+          getAllData(),
           errors,
           setName,
           setErrors,
@@ -121,6 +129,7 @@ const CategoryForm = ({
           descriptionField,
           "Description",
           description,
+          getAllData(),
           errors,
           setDescription,
           setErrors,
@@ -130,6 +139,7 @@ const CategoryForm = ({
           fatherField,
           "Father",
           father,
+          getAllData(),
           errors,
           () => {},
           setErrors,

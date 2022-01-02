@@ -93,6 +93,7 @@ const SelectPropertyForm = ({ setDialogOpen, updatedPropId }) => {
           idField,
           "Id",
           data[idField],
+          data,
           errors,
           (id) => {},
           setErrors,
@@ -103,6 +104,7 @@ const SelectPropertyForm = ({ setDialogOpen, updatedPropId }) => {
           nameField,
           "Name",
           data[nameField],
+          data,
           errors,
           (name) => {
             setData({ ...data, [nameField]: name });
@@ -114,6 +116,7 @@ const SelectPropertyForm = ({ setDialogOpen, updatedPropId }) => {
           descriptionField,
           "Description",
           data[descriptionField],
+          data,
           errors,
           (description) => {
             setData({ ...data, [descriptionField]: description });
@@ -155,6 +158,7 @@ const SelectPropertyForm = ({ setDialogOpen, updatedPropId }) => {
             categoryField,
             "Category",
             data[categoryField],
+            data,
             errors,
             (category) => {},
             setErrors,

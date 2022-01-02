@@ -17,7 +17,7 @@ import Dashboard from "@material-ui/icons/Dashboard";
 import Search from "@material-ui/icons/Search";
 // core components
 import CustomInput from "./common/customInput";
-import Button from "./common/button";
+import Button from "./common/Button";
 
 import styles from "./jss/material-dashboard-react/components/headerLinksStyle";
 

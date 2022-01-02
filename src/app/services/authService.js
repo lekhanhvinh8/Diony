@@ -1,22 +1,25 @@
 import httpService from "./httpService";
 import jwtDecode from "jwt-decode";
-import { apiUrl } from "../config.json";
+import { apiUrl } from "../../config.json";
 import http from "./httpService";
 
-const apiEndpoint = apiUrl + "auth";
+const apiEndpoint = apiUrl + "user/";
 const jwtKeyName = "jwt";
 
 http.setJwtHeader(getJwt());
 
 export async function login(email, password) {
-  const { data: jwt } = await httpService.post(apiEndpoint, {
+  const { data } = await httpService.post(apiEndpoint + "login", {
     email,
     password,
   });
 
-  localStorage.setItem(jwtKeyName, jwt);
+  if (data.roleName !== "admin") return null;
 
-  return jwt;
+  localStorage.setItem(jwtKeyName, data.token);
+  http.setJwtHeader(data.token);
+
+  return data.token;
 }
 
 export function loginWithJwt(jwt) {
@@ -37,6 +40,8 @@ export function getCurrentUser() {
   } catch (ex) {
     return null;
   }
+
+  return null;
 }
 
 export function getJwt() {
