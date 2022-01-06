@@ -20,6 +20,7 @@ import CustomInput from "../customInput";
 import Button from "../Button";
 
 import styles from "../../jss/material-dashboard-react/components/headerLinksStyle";
+import { logout } from "../../../services/authService";
 
 const useStyles = makeStyles(styles);
 
@@ -46,6 +47,8 @@ export default function AdminNavbarLinks() {
   };
   const handleCloseProfile = () => {
     setOpenProfile(null);
+    logout();
+    window.location = "/";
   };
   return (
     <div>

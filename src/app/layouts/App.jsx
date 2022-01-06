@@ -8,6 +8,8 @@ import Login from "../../views/authentication/login";
 import ProtectedRoute from "./common/protectedRoute";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { roleNames } from "../../config.json";
+import Shipper from "./shipper";
 
 function App() {
   return (
@@ -16,7 +18,16 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/login" component={Login} />
-          <ProtectedRoute path="/admin" component={Admin} />
+          <ProtectedRoute
+            path="/admin"
+            role={roleNames.admin}
+            component={Admin}
+          />
+          <ProtectedRoute
+            path="/shipper"
+            role={roleNames.shipper}
+            component={Shipper}
+          />
           <Redirect from="/" to="/admin/dashboard" />
         </Switch>
       </BrowserRouter>

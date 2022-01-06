@@ -16,7 +16,6 @@ import AdminNavbarLinks from "./adminNavbarLinks";
 
 import styles from "./jss/material-dashboard-react/components/sidebarStyle";
 import { noneCateId } from "./../../views/property/properties";
-import { nextDay } from "date-fns/esm";
 
 const useStyles = makeStyles(styles);
 
@@ -42,6 +41,8 @@ export default function Sidebar(props) {
     <List className={classes.list}>
       {routes.map((prop, key) => {
         if (!prop.name || !prop.icon) return null;
+
+        if (!location.pathname.includes(prop.layout)) return null;
 
         const generatePath = () => {
           if (prop.path.includes("/:")) {

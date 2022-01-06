@@ -16,7 +16,8 @@ import Joi from "joi";
 import { renderInput, validate } from "../../app/layouts/common/formUtil";
 import { useState } from "react";
 import { LoadingButton } from "@mui/lab";
-import { login } from "../../app/services/authService";
+import { getCurrentUser, login } from "../../app/services/authService";
+import { roleNames } from "../../config.json";
 
 const theme = createTheme();
 
@@ -55,10 +56,25 @@ export default function Login({ history }) {
 
     try {
       setSubmitLoadding(true);
-      await login(emailAddress, password);
+      const result = await login(emailAddress, password);
+
+      if (result === null) {
+        const newErrors = { [emailAddressField]: "" };
+        newErrors[emailAddressField] = "Invalid role";
+        setErrors(newErrors);
+
+        setSubmitLoadding(false);
+
+        return;
+      }
+
       setSubmitLoadding(false);
 
-      history.push("/admin");
+      const user = getCurrentUser();
+      if (user && user.role === roleNames.admin) history.push("/admin");
+      else if (user && user.role === roleNames.shipper) {
+        history.push("/shipper");
+      }
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         const newErrors = { [emailAddressField]: "" };
@@ -158,11 +174,7 @@ export default function Login({ history }) {
                     Forgot password?
                   </Link>
                 </Grid>
-                <Grid item>
-                  <Link href="/signup" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
+                <Grid item></Grid>
               </Grid>
             </Box>
           </Box>

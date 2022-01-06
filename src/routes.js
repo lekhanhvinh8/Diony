@@ -21,6 +21,7 @@ import Category from "@material-ui/icons/Category";
 import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import PendingActionsIcon from "@mui/icons-material/PendingActions";
+import ElectricRickshawIcon from "@mui/icons-material/ElectricRickshaw";
 
 // core components/views for Admin layout
 import DashboardPage from "./views/dashboard/dashboard";
@@ -29,6 +30,9 @@ import Properties from "./views/property/properties";
 import PendingOrders from "./views/pendingOrder/pendingOrders";
 import OrderDetail from "./views/orderDetail/orderDetail";
 import Shippers from "./views/shipper/shippers";
+import ToPickup from "./views/shipperPage/toPickup";
+import Shipping from "./views/shipperPage/shipping";
+import Shipped from "./views/shipperPage/shipped";
 
 const dashboardRoutes = [
   {
@@ -70,6 +74,27 @@ const dashboardRoutes = [
     path: "/order/:orderId",
     component: OrderDetail,
     layout: "/admin",
+  },
+  {
+    path: "/toPickup",
+    name: "To Pickup",
+    icon: ElectricRickshawIcon,
+    component: ToPickup,
+    layout: "/shipper",
+  },
+  {
+    path: "/shipping",
+    name: "Shipping",
+    icon: ElectricRickshawIcon,
+    component: Shipping,
+    layout: "/shipper",
+  },
+  {
+    path: "/shipped",
+    name: "Shipped",
+    icon: ElectricRickshawIcon,
+    component: Shipped,
+    layout: "/shipper",
   },
 ];
 
