@@ -49,7 +49,7 @@ export default function AdminNavbarLinks() {
   };
   return (
     <div>
-      <div className={classes.searchWrapper}>
+      {/* <div className={classes.searchWrapper}>
         <CustomInput
           formControlProps={{
             className: classes.margin + " " + classes.search,
@@ -76,7 +76,7 @@ export default function AdminNavbarLinks() {
         <Hidden mdUp implementation="css">
           <p className={classes.linkText}>Dashboard</p>
         </Hidden>
-      </Button>
+      </Button> */}
       <div className={classes.manager}>
         <Button
           color={window.innerWidth > 959 ? "transparent" : "white"}

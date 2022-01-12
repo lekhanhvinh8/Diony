@@ -24,41 +24,19 @@ import ClearIcon from "@mui/icons-material/Clear";
 import AddTaskIcon from "@mui/icons-material/AddTask";
 import DoDisturbIcon from "@mui/icons-material/DoDisturb";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { Link } from "react-router-dom";
-import OrderConfirmationDialog from "./orderConfirmationDialog";
-import CancelledDialog from "./cancelledDialog";
+import { Link, useHistory } from "react-router-dom";
 
-const PendingOrders = ({ history }) => {
+const OrdersTable = () => {
   const dispatch = useDispatch();
-  const orders = useSelector((state) => state.ui.pendingOrders.orders);
-  const totalOrders = useSelector(
-    (state) => state.ui.pendingOrders.totalOrders
+  const history = useHistory();
+  const { orders, totalOrders, pageNumber, pageSize } = useSelector(
+    (state) => state.ui.ordersPage
   );
-  const pageNumber = useSelector((state) => state.ui.pendingOrders.pageNumber);
-  const pageSize = useSelector((state) => state.ui.pendingOrders.pageSize);
 
-  const [confirmationOrder, setConfirmationOrder] = useState(null);
-  const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
-
-  const [cancelledOrder, setCancelledOrder] = useState(null);
-  const [cancelledDialogOpen, setCancelledDialogOpen] = useState(false);
-
-  useEffect(() => {
-    dispatch(reloadPendingOrders(pageSize));
-  }, [dispatch]);
+  useEffect(() => {}, [dispatch]);
 
   return (
     <Box>
-      <OrderConfirmationDialog
-        order={confirmationOrder}
-        dialogOpen={confirmationDialogOpen}
-        setDialogOpen={setConfirmationDialogOpen}
-      />
-      <CancelledDialog
-        order={cancelledOrder}
-        dialogOpen={cancelledDialogOpen}
-        setDialogOpen={setCancelledDialogOpen}
-      />
       <Paper>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -70,8 +48,6 @@ const PendingOrders = ({ history }) => {
                 <TableCell align="center">Date Ordered</TableCell>
                 <TableCell align="center">Payment Type</TableCell>
                 <TableCell align="center">Is Paid</TableCell>
-                <TableCell align="center">Approve</TableCell>
-                <TableCell align="center">Deny</TableCell>
                 <TableCell align="center">Detail</TableCell>
               </TableRow>
             </TableHead>
@@ -98,33 +74,12 @@ const PendingOrders = ({ history }) => {
                     </TableCell>
                     <TableCell align="center">{order.shopName}</TableCell>
                     <TableCell align="center">
-                      {formatMoney(order.total + order.shipFee) + "đ"}
+                      {formatMoney(order.total + order.shippingCost) + "đ"}
                     </TableCell>
                     <TableCell align="center">{formatedDate}</TableCell>
                     <TableCell align="center">{order.paymentType}</TableCell>
                     <TableCell align="center">
                       {order.isPaid ? <DoneIcon /> : <ClearIcon />}
-                    </TableCell>
-                    <TableCell align="center">
-                      <IconButton
-                        onClick={() => {
-                          setConfirmationOrder(order);
-                          setConfirmationDialogOpen(true);
-                        }}
-                      >
-                        <AddTaskIcon color="primary" />
-                      </IconButton>
-                    </TableCell>
-                    <TableCell align="center">
-                      <IconButton
-                        onClick={() => {
-                          console.log("CANCELELD");
-                          setCancelledOrder(order);
-                          setCancelledDialogOpen(true);
-                        }}
-                      >
-                        <DoDisturbIcon color="error" />
-                      </IconButton>
                     </TableCell>
                     <TableCell align="center">
                       <IconButton
@@ -141,21 +96,9 @@ const PendingOrders = ({ history }) => {
             </TableBody>
           </Table>
         </TableContainer>
-        <TablePagination
-          rowsPerPageOptions={[pageSize]}
-          component="div"
-          count={totalOrders}
-          rowsPerPage={pageSize}
-          page={pageNumber}
-          onPageChange={(e, newPage) => {
-            dispatch(reloadPendingOrders(pageSize, newPage));
-            dispatch(changePageNumber(newPage));
-          }}
-          onRowsPerPageChange={() => {}}
-        />
       </Paper>
     </Box>
   );
 };
 
-export default PendingOrders;
+export default OrdersTable;

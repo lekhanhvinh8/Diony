@@ -16,6 +16,10 @@ import Accessibility from "@material-ui/icons/Accessibility";
 import BugReport from "@material-ui/icons/BugReport";
 import Code from "@material-ui/icons/Code";
 import Cloud from "@material-ui/icons/Cloud";
+import SmartphoneIcon from "@mui/icons-material/Smartphone";
+import NoteAddIcon from "@mui/icons-material/NoteAdd";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+
 // core components
 import GridItem from "../../app/layouts/common/Grid/GridItem";
 import GridContainer from "../../app/layouts/common/Grid/GridContainer";
@@ -38,6 +42,8 @@ import {
 } from "../../app/variables/charts";
 
 import styles from "../../app/layouts/jss/material-dashboard-react/views/dashboardStyle";
+import RevenueChart from "./../revenueStatistic/revenueChart";
+import { Box } from "@mui/material";
 
 const useStyles = makeStyles(styles);
 
@@ -50,21 +56,23 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="warning" stats icon>
               <CardIcon color="warning">
-                <Icon>content_copy</Icon>
+                <Icon>
+                  <SmartphoneIcon />
+                </Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Used Space</p>
+              <p className={classes.cardCategory}>Total Products</p>
               <h3 className={classes.cardTitle}>
                 49/50 <small>GB</small>
               </h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
-                <Danger>
+                {/* <Danger>
                   <Warning />
                 </Danger>
                 <a href="#pablo" onClick={(e) => e.preventDefault()}>
                   Get more space
-                </a>
+                </a> */}
               </div>
             </CardFooter>
           </Card>
@@ -75,14 +83,14 @@ export default function Dashboard() {
               <CardIcon color="success">
                 <Store />
               </CardIcon>
-              <p className={classes.cardCategory}>Revenue</p>
+              <p className={classes.cardCategory}>Total Shops</p>
               <h3 className={classes.cardTitle}>$34,245</h3>
             </CardHeader>
             <CardFooter stats>
-              <div className={classes.stats}>
+              {/* <div className={classes.stats}>
                 <DateRange />
                 Last 24 Hours
-              </div>
+              </div> */}
             </CardFooter>
           </Card>
         </GridItem>
@@ -90,16 +98,18 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="danger" stats icon>
               <CardIcon color="danger">
-                <Icon>info_outline</Icon>
+                <Icon>
+                  <NoteAddIcon />
+                </Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Fixed Issues</p>
+              <p className={classes.cardCategory}>Total Orders</p>
               <h3 className={classes.cardTitle}>75</h3>
             </CardHeader>
             <CardFooter stats>
-              <div className={classes.stats}>
+              {/* <div className={classes.stats}>
                 <LocalOffer />
                 Tracked from Github
-              </div>
+              </div> */}
             </CardFooter>
           </Card>
         </GridItem>
@@ -107,21 +117,24 @@ export default function Dashboard() {
           <Card>
             <CardHeader color="info" stats icon>
               <CardIcon color="info">
-                <Accessibility />
+                <AttachMoneyIcon />
               </CardIcon>
-              <p className={classes.cardCategory}>Followers</p>
+              <p className={classes.cardCategory}>Total Revenue</p>
               <h3 className={classes.cardTitle}>+245</h3>
             </CardHeader>
             <CardFooter stats>
-              <div className={classes.stats}>
+              {/* <div className={classes.stats}>
                 <Update />
                 Just Updated
-              </div>
+              </div> */}
             </CardFooter>
           </Card>
         </GridItem>
       </GridContainer>
-      <GridContainer>
+      <Box>
+        <RevenueChart />
+      </Box>
+      {/* <GridContainer>
         <GridItem xs={12} sm={12} md={4}>
           <Card chart>
             <CardHeader color="success">
@@ -194,8 +207,8 @@ export default function Dashboard() {
             </CardFooter>
           </Card>
         </GridItem>
-      </GridContainer>
-      <GridContainer>
+      </GridContainer> */}
+      {/* <GridContainer>
         <GridItem xs={12} sm={12} md={6}>
           <CustomTabs
             title="Tasks:"
@@ -259,7 +272,7 @@ export default function Dashboard() {
             </CardBody>
           </Card>
         </GridItem>
-      </GridContainer>
+      </GridContainer> */}
     </div>
   );
 }

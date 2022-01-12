@@ -31,7 +31,11 @@ export const updateCategory = async (category) => {
 };
 
 export const deleteCategory = async (cateId) => {
-  const result = await http.delete(apiEndpoint + "/" + cateId);
+  const result = await http.delete(apiEndpoint, {
+    params: {
+      categoryId: cateId,
+    },
+  });
   return result;
 };
 

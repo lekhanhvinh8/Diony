@@ -50,6 +50,7 @@ import CategoriesDialog, { categoryOpenMode } from "./categoriesDialog";
 import TypingPropertyGrid from "./typingPropertyGrid";
 import { removeTypingProperty } from "../../app/store/entities/typingProperties";
 import ValuesDialog from "../value/valuesDialog";
+import { toast } from "react-toastify";
 
 export const noneCateId = "none";
 
@@ -174,7 +175,14 @@ const Properties = ({ match, history }) => {
         if (column.field === selectPropDeleteColumnField) {
           return (
             <IconButton
-              onClick={() => dispatch(removeSelectProperty(params.row.id))}
+              onClick={async () => {
+                try {
+                  await dispatch(removeSelectProperty(params.row.id));
+                  toast.success("Delete Successfully");
+                } catch (ex) {
+                  toast.error("Delete Fail");
+                }
+              }}
             >
               <DeleteIcon color="error" />
             </IconButton>

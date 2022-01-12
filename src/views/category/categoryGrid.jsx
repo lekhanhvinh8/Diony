@@ -31,10 +31,10 @@ const useStyles = makeStyles({
       outline: "none",
     },
     "& .MuiDataGrid-row:hover": {
-      backgroundColor: "blue",
+      backgroundColor: "#D3D3D3",
     },
     "& .MuiDataGrid-row.Mui-selected": {
-      backgroundColor: "yellow",
+      backgroundColor: "#D3D3D3",
     },
   },
 });

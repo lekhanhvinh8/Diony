@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Joi from "joi";
 import { validate, renderInput } from "./../../app/layouts/common/formUtil";
 import { getCategory } from "../../app/services/categoriesService";
-import { Button, DialogActions } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogTitle } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -17,6 +17,7 @@ import {
 import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices";
 import { Link } from "react-router-dom";
 import CategoryAvatar from "./categoryAvatar";
+import { toast } from "react-toastify";
 
 const cateIdField = "cateId";
 const nameField = "name";
@@ -42,6 +43,8 @@ const CategoryForm = ({
   const [description, setDescription] = useState("");
   const [father, setFather] = useState("root");
   const [errors, setErrors] = useState({});
+
+  const [deletedDialogOpen, setDeletedDialogOpen] = useState(false);
 
   const dispatch = useDispatch();
   const cateHasChildren = useSelector(hasChildren(updatedCateId));
@@ -161,6 +164,7 @@ const CategoryForm = ({
               onClick={async () => {
                 await dispatch(removeCategory(updatedCateId));
                 setDialogOpen(false);
+                toast.success("Delete Successfully");
               }}
             >
               Delete

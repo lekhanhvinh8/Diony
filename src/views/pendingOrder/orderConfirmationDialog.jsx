@@ -74,7 +74,7 @@ const OrderConfirmationDialog = ({ order, dialogOpen, setDialogOpen }) => {
           display="flex"
         >
           <InputBase
-            fullWidth="100%"
+            fullWidth
             value={searchKey}
             onChange={(e) => {
               setSearchKey(e.currentTarget.value);

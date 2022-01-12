@@ -84,6 +84,9 @@ const CategoriesDialog = ({ dialogOpen, setDialogOpen, propId, openMode }) => {
         selectProperty &&
         selectProperty.categoryIDs.map((id) => {
           const category = allLeafCategories.find((cate) => cate.id === id);
+
+          if (category == null) return undefined;
+
           const labelId = `checkbox-list-label-${category.name}`;
 
           return (
@@ -133,6 +136,9 @@ const CategoriesDialog = ({ dialogOpen, setDialogOpen, propId, openMode }) => {
       typingProperty &&
       typingProperty.categoryIDs.map((id) => {
         const category = allLeafCategories.find((cate) => cate.id === id);
+
+        if (category == null) return undefined;
+
         const labelId = `checkbox-list-label-${category.name}`;
 
         return (

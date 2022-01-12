@@ -39,7 +39,7 @@ const ItemInfo = () => {
       {order?.items &&
         order.items.map((item, index) => {
           return (
-            <Grid container sx={{ mt: 2 }}>
+            <Grid container sx={{ mt: 2 }} key={index}>
               <Grid item xs={1} display="flex" justifyContent="center">
                 {index + 1}
               </Grid>

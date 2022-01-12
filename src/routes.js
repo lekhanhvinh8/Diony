@@ -22,6 +22,9 @@ import MiscellaneousServicesIcon from "@mui/icons-material/MiscellaneousServices
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import PendingActionsIcon from "@mui/icons-material/PendingActions";
 import ElectricRickshawIcon from "@mui/icons-material/ElectricRickshaw";
+import LocalShippingIcon from "@mui/icons-material/LocalShipping";
+import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 
 // core components/views for Admin layout
 import DashboardPage from "./views/dashboard/dashboard";
@@ -33,6 +36,8 @@ import Shippers from "./views/shipper/shippers";
 import ToPickup from "./views/shipperPage/toPickup";
 import Shipping from "./views/shipperPage/shipping";
 import Shipped from "./views/shipperPage/shipped";
+import RevenueStatistic from "./views/revenueStatistic/revenueStatistic";
+import Orders from "./views/orders/orders";
 
 const dashboardRoutes = [
   {
@@ -64,10 +69,24 @@ const dashboardRoutes = [
     layout: "/admin",
   },
   {
+    path: "/orders/",
+    name: "Orders",
+    icon: PendingActionsIcon,
+    component: Orders,
+    layout: "/admin",
+  },
+  {
     path: "/shippers",
     name: "Shipper",
     icon: AssignmentIndIcon,
     component: Shippers,
+    layout: "/admin",
+  },
+  {
+    path: "/revenue",
+    name: "Revenue",
+    icon: AttachMoneyIcon,
+    component: RevenueStatistic,
     layout: "/admin",
   },
   {
@@ -85,14 +104,14 @@ const dashboardRoutes = [
   {
     path: "/shipping",
     name: "Shipping",
-    icon: ElectricRickshawIcon,
+    icon: LocalShippingIcon,
     component: Shipping,
     layout: "/shipper",
   },
   {
     path: "/shipped",
     name: "Shipped",
-    icon: ElectricRickshawIcon,
+    icon: DoneOutlineIcon,
     component: Shipped,
     layout: "/shipper",
   },

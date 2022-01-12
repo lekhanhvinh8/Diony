@@ -47,12 +47,10 @@ export default function AdminNavbarLinks() {
   };
   const handleCloseProfile = () => {
     setOpenProfile(null);
-    logout();
-    window.location = "/";
   };
   return (
     <div>
-      <div className={classes.searchWrapper}>
+      {/* <div className={classes.searchWrapper}>
         <CustomInput
           formControlProps={{
             className: classes.margin + " " + classes.search,
@@ -79,9 +77,9 @@ export default function AdminNavbarLinks() {
         <Hidden mdUp implementation="css">
           <p className={classes.linkText}>Dashboard</p>
         </Hidden>
-      </Button>
+      </Button> */}
       <div className={classes.manager}>
-        <Button
+        {/* <Button
           color={window.innerWidth > 959 ? "transparent" : "white"}
           justIcon={window.innerWidth > 959}
           simple={!(window.innerWidth > 959)}
@@ -97,7 +95,7 @@ export default function AdminNavbarLinks() {
               Notification
             </p>
           </Hidden>
-        </Button>
+        </Button> */}
         <Poppers
           open={Boolean(openNotification)}
           anchorEl={openNotification}
@@ -197,20 +195,11 @@ export default function AdminNavbarLinks() {
                 <ClickAwayListener onClickAway={handleCloseProfile}>
                   <MenuList role="menu">
                     <MenuItem
-                      onClick={handleCloseProfile}
-                      className={classes.dropdownItem}
-                    >
-                      Profile
-                    </MenuItem>
-                    <MenuItem
-                      onClick={handleCloseProfile}
-                      className={classes.dropdownItem}
-                    >
-                      Settings
-                    </MenuItem>
-                    <Divider light />
-                    <MenuItem
-                      onClick={handleCloseProfile}
+                      onClick={() => {
+                        handleCloseProfile();
+                        logout();
+                        window.location = "/";
+                      }}
                       className={classes.dropdownItem}
                     >
                       Logout

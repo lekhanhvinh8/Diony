@@ -4,6 +4,10 @@ import propertiesPageReducer from "./propertiesPage";
 import valuesDialogReducer from "./valuesDialog";
 import pendingOrdersReducer from "./pendingOrders";
 import shippersReducer from "./shippers";
+import toPickupOrderReducer from "./toPickupOrderPage";
+import shippingOrderReducer from "./shippingOrderPage";
+import revenueStatisticPageReducer from "./revenueStatisticPage";
+import ordersPageReducer from "./ordersPage";
 
 export default combineReducers({
   categoriesPage: categoriesPageReducer,
@@ -11,4 +15,8 @@ export default combineReducers({
   valuesDialog: valuesDialogReducer,
   pendingOrders: pendingOrdersReducer,
   shippers: shippersReducer,
+  toPickupOrderPage: toPickupOrderReducer,
+  shippingOrderPage: shippingOrderReducer,
+  revenueStatisticPage: revenueStatisticPageReducer,
+  ordersPage: ordersPageReducer,
 });

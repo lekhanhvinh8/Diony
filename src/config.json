@@ -18,38 +18,64 @@
         "paypal": "PAYPAL",
         "cod": "COD"
     },
+    "orderBy": {
+        "dateOrdered": "DateOrdered",
+        "dateAppointment": "DateAppointment",
+        "datePickedup": "DatePickedup"
+    },
     "orderStatus": {
         "all": {
-            "statusCode": "all",
-            "label": "Tất cả"
+            "statusCode": null,
+            "tabName": "all",
+            "label": "All"
         },
-        "pendingCheckout": {
-            "statusCode": "PENDING_CHECKOUT",
-            "label": "Pending Checkout"
-        },
-        "pendingApproval": {
+        "pending": {
             "statusCode": "PENDING_APPROVAL",
-            "label": "Pending Approval"
+            "tabName": "pending",
+            "label": "Pending",
+            "step": "Pending"
         },
-        "toShip": {
-            "statusCode": "TO_SHIP",
-            "label": "To Ship"
+        "toPrepare": {
+            "statusCode": "TO_PREPARE",
+            "tabName": "toPrepare",
+            "label": "To Prepare",
+            "step": "Preparing"
         },
         "toPickup": {
             "statusCode": "TO_PICKUP",
-            "label": "To Pickup"
+            "tabName": "toPickup",
+            "label": "To Pickup",
+            "step": "Waiting for picking"
         },
         "shipping": {
             "statusCode": "SHIPPING",
-            "label": "Shipping"
+            "tabName": "shipping",
+            "label": "Shipping",
+            "step": "Shipping"
         },
         "shipped": {
             "statusCode": "SHIPPED",
-            "label": "Shipped"
+            "tabName": "shipped",
+            "label": "Shipped",
+            "step": "Shipped"
         },
         "cancelled": {
             "statusCode": "CANCELLED",
-            "label": "Cancelled"
+            "tabName": "cancelled",
+            "label": "Cancelled",
+            "step": "Cancelled"
         }
-    }
+    },
+    "adminCancelledReasons": [
+        {"id": 1, "reason": "Invalid Order"},
+        {"id": 2, "reason": "Couldn't find a suitable shipper"},
+        {"id": 3, "reason": "Unreliable delivery address"},
+        {"id": 4, "reason": "Shipping method not available"},
+        {"id": 5, "reason": "orthers"}
+    ],
+    "shipperCancelledReasons": [
+        {"id": 1, "reason": "Customer does not receive order"},
+        {"id": 2, "reason": "Item is lost"},
+        {"id": 3, "reason": "Item is broken"}
+    ]
 }
