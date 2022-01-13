@@ -8,6 +8,7 @@ import toPickupOrderReducer from "./toPickupOrderPage";
 import shippingOrderReducer from "./shippingOrderPage";
 import revenueStatisticPageReducer from "./revenueStatisticPage";
 import ordersPageReducer from "./ordersPage";
+import doneOrderPageReducer from "./doneOrderPage";
 
 export default combineReducers({
   categoriesPage: categoriesPageReducer,
@@ -19,4 +20,5 @@ export default combineReducers({
   shippingOrderPage: shippingOrderReducer,
   revenueStatisticPage: revenueStatisticPageReducer,
   ordersPage: ordersPageReducer,
+  doneOrderPage: doneOrderPageReducer,
 });

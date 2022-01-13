@@ -17,7 +17,7 @@ const slice = createSlice({
       page.orders = action.payload;
     },
     pageNumberSet: (page, action) => {
-      page.Number = action.payload;
+      page.pageNumber = action.payload;
     },
     totalOrdersSet: (page, action) => {
       page.totalOrders = action.payload;

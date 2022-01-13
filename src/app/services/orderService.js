@@ -111,6 +111,25 @@ export const getShipperOrders = async (
   };
 };
 
+export const getShipperDoneOrders = async (
+  pageSize = 1,
+  pageNumber = 0,
+  searchKey = null
+) => {
+  const { data } = await http.get(apiUrl + "Shipper/GetFilteredDoneOrders", {
+    params: {
+      pageSize,
+      pageNumber,
+      searchKey,
+    },
+  });
+
+  return {
+    orders: data.orders,
+    totalOrders: data.totalOrders,
+  };
+};
+
 export const getShipperOrderDetail = async (orderId) => {
   const { data: order } = await http.get(apiUrl + "Shipper/GetOrderDetail", {
     params: { orderId },

@@ -26,3 +26,11 @@ export const getYearRevenue = async (date) => {
 
   return data;
 };
+
+export const getDashboardInfo = async () => {
+  const { data } = await http.get(apiEndpoint + "DashboardInfo");
+
+  const { totalProducts, totalSeller, totalRevenue, totalOrders } = data;
+
+  return { totalProducts, totalSeller, totalRevenue, totalOrders };
+};

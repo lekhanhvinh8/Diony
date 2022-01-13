@@ -38,6 +38,7 @@ import Shipping from "./views/shipperPage/shipping";
 import Shipped from "./views/shipperPage/shipped";
 import RevenueStatistic from "./views/revenueStatistic/revenueStatistic";
 import Orders from "./views/orders/orders";
+import Done from './views/shipperPage/done';
 
 const dashboardRoutes = [
   {
@@ -109,10 +110,10 @@ const dashboardRoutes = [
     layout: "/shipper",
   },
   {
-    path: "/shipped",
-    name: "Shipped",
+    path: "/done",
+    name: "Done",
     icon: DoneOutlineIcon,
-    component: Shipped,
+    component: Done,
     layout: "/shipper",
   },
 ];

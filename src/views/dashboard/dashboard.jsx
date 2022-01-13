@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 // react plugin for creating charts
 import ChartistGraph from "react-chartist";
 // @material-ui/core
@@ -44,11 +44,34 @@ import {
 import styles from "../../app/layouts/jss/material-dashboard-react/views/dashboardStyle";
 import RevenueChart from "./../revenueStatistic/revenueChart";
 import { Box } from "@mui/material";
+import { getDashboardInfo } from "../../app/services/revenueService";
+import { formatMoney } from "../../app/utils/formatMoney";
 
 const useStyles = makeStyles(styles);
 
 export default function Dashboard() {
   const classes = useStyles();
+
+  const [data, setData] = useState({
+    totalProducts: 0,
+    totalSeller: 0,
+    totalRevenue: 0,
+    totalOrders: 0,
+  });
+
+  useEffect(() => {
+    const asyncFunc = async () => {
+      const { totalProducts, totalSeller, totalRevenue, totalOrders } =
+        await getDashboardInfo();
+
+      setData({ totalProducts, totalSeller, totalRevenue, totalOrders });
+    };
+
+    asyncFunc();
+  });
+
+  const { totalProducts, totalSeller, totalRevenue, totalOrders } = data;
+
   return (
     <div>
       <GridContainer>
@@ -61,9 +84,7 @@ export default function Dashboard() {
                 </Icon>
               </CardIcon>
               <p className={classes.cardCategory}>Total Products</p>
-              <h3 className={classes.cardTitle}>
-                49/50 <small>GB</small>
-              </h3>
+              <h3 className={classes.cardTitle}>{totalProducts}</h3>
             </CardHeader>
             <CardFooter stats>
               <div className={classes.stats}>
@@ -84,7 +105,7 @@ export default function Dashboard() {
                 <Store />
               </CardIcon>
               <p className={classes.cardCategory}>Total Shops</p>
-              <h3 className={classes.cardTitle}>$34,245</h3>
+              <h3 className={classes.cardTitle}>{totalSeller}</h3>
             </CardHeader>
             <CardFooter stats>
               {/* <div className={classes.stats}>
@@ -103,7 +124,7 @@ export default function Dashboard() {
                 </Icon>
               </CardIcon>
               <p className={classes.cardCategory}>Total Orders</p>
-              <h3 className={classes.cardTitle}>75</h3>
+              <h3 className={classes.cardTitle}>{totalOrders}</h3>
             </CardHeader>
             <CardFooter stats>
               {/* <div className={classes.stats}>
@@ -120,7 +141,9 @@ export default function Dashboard() {
                 <AttachMoneyIcon />
               </CardIcon>
               <p className={classes.cardCategory}>Total Revenue</p>
-              <h3 className={classes.cardTitle}>+245</h3>
+              <h3 className={classes.cardTitle}>
+                {formatMoney(totalRevenue) + "đ"}
+              </h3>
             </CardHeader>
             <CardFooter stats>
               {/* <div className={classes.stats}>
