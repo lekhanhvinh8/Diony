@@ -30,9 +30,9 @@ const ShipperList = () => {
               <TableRow>
                 <TableCell align="center">Id</TableCell>
                 <TableCell align="center">Email</TableCell>
-                <TableCell align="center">Name</TableCell>
-                <TableCell align="center">Phone</TableCell>
-                <TableCell align="center">Date Created</TableCell>
+                <TableCell align="center">Tên</TableCell>
+                <TableCell align="center">Số điện thoại</TableCell>
+                <TableCell align="center">Ngày tạo</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -42,7 +42,6 @@ const ShipperList = () => {
                 let formatedDate = null;
 
                 try {
-                  console.log(date);
                   formatedDate = format(date, "MM/dd/yyyy h:mm a");
                 } catch (ex) {}
 

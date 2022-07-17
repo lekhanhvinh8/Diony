@@ -114,29 +114,29 @@ const ShipperForm = ({ setDialogOpen, updatedShipperId }) => {
   return (
     <Box component="form" noValidate sx={{ mt: 1 }}>
       {renderFormInput(emailField, "Email *")}
-      {renderFormInput(passwordField, "Password *", {
+      {renderFormInput(passwordField, "Mật khẩu *", {
         type: "password",
       })}
       {renderFormInput(
         passwordConfirmField,
-        "Confirm Password *",
+        "Xác nhận mật khẩu *",
         {
           type: "password",
         },
         [passwordField]
       )}
-      {renderFormInput(phoneNumberField, "Phone Number *")}
-      {renderFormInput(nameField, "Full Name *")}
+      {renderFormInput(phoneNumberField, "Số điện thoại *")}
+      {renderFormInput(nameField, "Họ tên *")}
 
       <DialogActions>
-        <Button onClick={() => setDialogOpen(false)}>Cancel</Button>
+        <Button onClick={() => setDialogOpen(false)}>Hủy</Button>
         <Button
           disabled={validate(data, schema) ? true : false}
           onClick={async () => {
             await handleSubmit();
           }}
         >
-          Save
+          Lưu
         </Button>
       </DialogActions>
     </Box>

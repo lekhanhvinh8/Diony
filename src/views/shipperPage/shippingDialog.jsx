@@ -78,7 +78,9 @@ const ShippingDialog = ({ dialogOpen, setDialogOpen, orderId = null }) => {
               <Box display="flex">
                 <PersonOutlinedIcon color="error" />
                 <Box sx={{ ml: 1 }}>
-                  <Typography fontWeight="bold">Cusomter Info</Typography>
+                  <Typography fontWeight="bold">
+                    Thông tin người nhận
+                  </Typography>
                   <Avatar
                     sx={{ width: 50, height: 50 }}
                     alt={"defaultAvatar"}
@@ -101,7 +103,7 @@ const ShippingDialog = ({ dialogOpen, setDialogOpen, orderId = null }) => {
               <Box display="flex">
                 <Grid3x3OutlinedIcon color="error" />
                 <Box sx={{ ml: 1 }}>
-                  <Typography fontWeight="bold">Order ID</Typography>
+                  <Typography fontWeight="bold">Mã đơn hàng</Typography>
                   <Typography sx={{ mt: 1 }} fontSize={15}>
                     {order.id}
                   </Typography>
@@ -111,7 +113,7 @@ const ShippingDialog = ({ dialogOpen, setDialogOpen, orderId = null }) => {
               <Box display="flex" sx={{ mt: 2 }}>
                 <LocalShippingOutlinedIcon color="error" />
                 <Box sx={{ ml: 1 }}>
-                  <Typography fontWeight="bold">Shipping Info</Typography>
+                  <Typography fontWeight="bold">Thông tin giao hàng</Typography>
                   <Typography sx={{ mt: 1 }}>
                     {"Delivery address: " + order.deliveryAddress}
                   </Typography>
@@ -121,7 +123,7 @@ const ShippingDialog = ({ dialogOpen, setDialogOpen, orderId = null }) => {
               <Box display="flex" sx={{ mt: 2 }}>
                 <AccessTimeOutlinedIcon color="error" />
                 <Box sx={{ ml: 1 }}>
-                  <Typography fontWeight="bold">Pickup Date</Typography>
+                  <Typography fontWeight="bold">Ngày lấy hàng</Typography>
                   <Typography sx={{ mt: 1 }}>{formatedDate}</Typography>
                 </Box>
               </Box>
@@ -130,14 +132,14 @@ const ShippingDialog = ({ dialogOpen, setDialogOpen, orderId = null }) => {
               {!(order.paymentType === paymentMethod.cod) ? (
                 <Box width="100%" display="flex" justifyContent="right">
                   <Typography color="red" fontWeight="bold">
-                    Do not collect money
+                    Không thu tiền
                   </Typography>
                 </Box>
               ) : (
                 <Box>
                   <Grid container>
                     <Grid item xs={9} display="flex" justifyContent="right">
-                      Total Product Price:
+                      Tổng tiền hàng:
                     </Grid>
                     <Grid item xs={3} display="flex" justifyContent="right">
                       {formatMoney(order.total) + "đ"}
@@ -145,7 +147,7 @@ const ShippingDialog = ({ dialogOpen, setDialogOpen, orderId = null }) => {
                   </Grid>
                   <Grid container sx={{ mt: 2 }}>
                     <Grid item xs={9} display="flex" justifyContent="right">
-                      Shipping Cost:
+                      Phí giao hàng:
                     </Grid>
                     <Grid item xs={3} display="flex" justifyContent="right">
                       {formatMoney(order.shipFee ? order.shipFee : 0) + "đ"}
@@ -153,7 +155,7 @@ const ShippingDialog = ({ dialogOpen, setDialogOpen, orderId = null }) => {
                   </Grid>
                   <Grid container sx={{ mt: 2 }}>
                     <Grid item xs={9} display="flex" justifyContent="right">
-                      Total:
+                      Tổng cộng:
                     </Grid>
                     <Grid item xs={3} display="flex" justifyContent="right">
                       <Typography fontSize={19} fontWeight="bold" color="red">
@@ -170,7 +172,7 @@ const ShippingDialog = ({ dialogOpen, setDialogOpen, orderId = null }) => {
         )}
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => setDialogOpen(false)}>Cancel</Button>
+        <Button onClick={() => setDialogOpen(false)}>Trở về</Button>
         <Button
           onClick={async () => {
             try {
@@ -183,7 +185,7 @@ const ShippingDialog = ({ dialogOpen, setDialogOpen, orderId = null }) => {
             }
           }}
         >
-          Delivery
+          Giao hàng
         </Button>
       </DialogActions>
     </Dialog>

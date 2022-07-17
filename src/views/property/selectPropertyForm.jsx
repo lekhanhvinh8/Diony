@@ -39,7 +39,7 @@ const SelectPropertyForm = ({ setDialogOpen, updatedPropId }) => {
     [idField]: 0,
     [nameField]: "",
     [descriptionField]: "",
-    [categoryField]: cateValue ? cateValue : "none",
+    [categoryField]: cateValue ? cateValue : "Không có",
   });
   const [isRequired, setIsRequired] = useState(false);
   const [hasMultiValues, setHasMultiValues] = useState(false);
@@ -102,7 +102,7 @@ const SelectPropertyForm = ({ setDialogOpen, updatedPropId }) => {
         )}
         {renderInput(
           nameField,
-          "Name",
+          "Tên",
           data[nameField],
           data,
           errors,
@@ -114,7 +114,7 @@ const SelectPropertyForm = ({ setDialogOpen, updatedPropId }) => {
         )}
         {renderInput(
           descriptionField,
-          "Description",
+          "Mô tả",
           data[descriptionField],
           data,
           errors,
@@ -135,7 +135,7 @@ const SelectPropertyForm = ({ setDialogOpen, updatedPropId }) => {
                 }}
               />
             }
-            label="Is Required"
+            label="Bắt buộc"
           />
         </FormGroup>
 
@@ -149,14 +149,14 @@ const SelectPropertyForm = ({ setDialogOpen, updatedPropId }) => {
                 }}
               />
             }
-            label="Multi Value"
+            label="Đa giá trị"
           />
         </FormGroup>
 
         {!updatedPropId &&
           renderInput(
             categoryField,
-            "Category",
+            "Danh mục",
             data[categoryField],
             data,
             errors,
@@ -168,7 +168,7 @@ const SelectPropertyForm = ({ setDialogOpen, updatedPropId }) => {
       </form>
 
       <DialogActions>
-        <Button onClick={() => setDialogOpen(false)}>Cancel</Button>
+        <Button onClick={() => setDialogOpen(false)}>Hủy</Button>
         <Button
           disabled={validate(data, schema) ? true : false}
           onClick={async () => {
@@ -176,7 +176,7 @@ const SelectPropertyForm = ({ setDialogOpen, updatedPropId }) => {
             setDialogOpen(false);
           }}
         >
-          Save
+          Lưu
         </Button>
       </DialogActions>
     </div>

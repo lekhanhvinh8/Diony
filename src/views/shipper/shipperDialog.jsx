@@ -13,7 +13,7 @@ const ShipperDialog = ({
       fullWidth={true}
       maxWidth={"sm"}
     >
-      <DialogTitle>Create New Shipper Account</DialogTitle>
+      <DialogTitle>Tạo tài khoản shipper</DialogTitle>
       <DialogContent>
         <ShipperForm
           setDialogOpen={setDialogOpen}

@@ -20,20 +20,20 @@ const ItemInfo = () => {
     <Box width="100%">
       <Grid container>
         <Grid item xs={1} display="flex" justifyContent="center">
-          No
+          STT
         </Grid>
         <Grid item xs={2} display="flex" justifyContent="center">
-          Product
+          Sản phẩm
         </Grid>
         <Grid item xs={4}></Grid>
         <Grid item xs={2}>
-          Unit price
+          Đơn giá
         </Grid>
         <Grid item xs={1} display="flex" justifyContent="center">
-          Quantity
+          Số lượng
         </Grid>
         <Grid item xs={2} display="flex" justifyContent="right">
-          Amount
+          Thành tiền
         </Grid>
       </Grid>
       {order?.items &&
@@ -76,7 +76,7 @@ const ItemInfo = () => {
       <Box sx={{ mt: 2 }}>
         <Grid container>
           <Grid item xs={9} display="flex" justifyContent="right">
-            Total Product Price:
+            Tổng giá:
           </Grid>
           <Grid item xs={3} display="flex" justifyContent="right">
             {formatMoney(getTotalItemPrice()) + "đ"}
@@ -84,7 +84,7 @@ const ItemInfo = () => {
         </Grid>
         <Grid container sx={{ mt: 2 }}>
           <Grid item xs={9} display="flex" justifyContent="right">
-            Shipping Cost:
+            Phí giao hàng:
           </Grid>
           <Grid item xs={3} display="flex" justifyContent="right">
             {formatMoney(order.shipFee ? order.shipFee : 0) + "đ"}
@@ -92,12 +92,26 @@ const ItemInfo = () => {
         </Grid>
         <Grid container sx={{ mt: 2 }}>
           <Grid item xs={9} display="flex" justifyContent="right">
-            Total:
+            Giảm giá:
+          </Grid>
+          <Grid item xs={3} display="flex" justifyContent="right">
+            {formatMoney(Math.round(order.shippingCostDiscount)) + "đ"}
+          </Grid>
+        </Grid>
+        <Grid container sx={{ mt: 2 }}>
+          <Grid item xs={9} display="flex" justifyContent="right">
+            Tổng:
           </Grid>
           <Grid item xs={3} display="flex" justifyContent="right">
             <Typography fontSize={19} fontWeight="bold" color="red">
               {formatMoney(
-                order.shipFee ? getTotalItemPrice() + order.shipFee : 0
+                Math.round(
+                  order.shipFee
+                    ? getTotalItemPrice() +
+                        order.shipFee -
+                        order.shippingCostDiscount
+                    : 0
+                )
               ) + "đ"}
             </Typography>
           </Grid>

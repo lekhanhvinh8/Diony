@@ -43,12 +43,14 @@ const OrdersTable = () => {
             <TableHead>
               <TableRow>
                 <TableCell align="center">Id</TableCell>
-                <TableCell align="center">Shop Name</TableCell>
-                <TableCell align="center">Total</TableCell>
-                <TableCell align="center">Date Ordered</TableCell>
-                <TableCell align="center">Payment Type</TableCell>
-                <TableCell align="center">Is Paid</TableCell>
-                <TableCell align="center">Detail</TableCell>
+                <TableCell align="center">Tên Shop</TableCell>
+                <TableCell align="center">Email Shipper</TableCell>
+                <TableCell align="center">Tên Shipper</TableCell>
+                <TableCell align="center">Tổng tiền</TableCell>
+                <TableCell align="center">Ngày đặt hàng</TableCell>
+                <TableCell align="center">Loại thanh toán</TableCell>
+                <TableCell align="center">Đã thanh toán</TableCell>
+                <TableCell align="center">Chi tiết</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -74,7 +76,19 @@ const OrdersTable = () => {
                     </TableCell>
                     <TableCell align="center">{order.shopName}</TableCell>
                     <TableCell align="center">
-                      {formatMoney(order.total + order.shippingCost) + "đ"}
+                      {order.shipperMail ? order.shipperMail : <ClearIcon />}
+                    </TableCell>
+                    <TableCell align="center">
+                      {order.shipperName ? order.shipperName : <ClearIcon />}
+                    </TableCell>
+                    <TableCell align="center">
+                      {formatMoney(
+                        Math.round(
+                          order.total +
+                            order.shippingCost -
+                            order.shippingCostDiscount
+                        )
+                      ) + "đ"}
                     </TableCell>
                     <TableCell align="center">{formatedDate}</TableCell>
                     <TableCell align="center">{order.paymentType}</TableCell>

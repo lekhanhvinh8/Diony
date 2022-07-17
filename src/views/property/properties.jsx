@@ -119,13 +119,13 @@ const Properties = ({ match, history }) => {
       ...column,
       renderCell: (params) => {
         if (column.field === selectPropIsRequiredColumnField) {
-          if (params.value) return <Chip label="Required" color="error" />;
-          return <Chip label="Optional" color="success" />;
+          if (params.value) return <Chip label="Bắt buộc" color="error" />;
+          return <Chip label="Tự chọn" color="success" />;
         }
 
         if (column.field === selectPropHasMultiValuesColumnField) {
-          if (params.value) return <Chip label="Multi" color="success" />;
-          return <Chip label="Single" color="primary" />;
+          if (params.value) return <Chip label="Đa" color="success" />;
+          return <Chip label="Đơn" color="primary" />;
         }
 
         if (column.field === selectPropCateIdsColumnField) {
@@ -199,7 +199,12 @@ const Properties = ({ match, history }) => {
       ...column,
       renderCell: (params) => {
         if (column.field === typingPropTypeColumnField) {
-          return <Chip label={params.value} color="primary" />;
+          return (
+            <Chip
+              label={params.value == "text" ? "Văn bản" : "Ngày"}
+              color="primary"
+            />
+          );
         }
 
         if (column.field === typingPropCateIdsColumnField) {
@@ -274,14 +279,16 @@ const Properties = ({ match, history }) => {
 
             history.push(`/admin/properties/${cateId}`);
           }}
-          renderInput={(params) => <TextField {...params} label="Category" />}
+          renderInput={(params) => (
+            <TextField {...params} label="Chọn danh mục" />
+          )}
         />
         <Stack direction="row" style={{ height: 32 }}>
           <Button
             color="error"
             endIcon={<AddIcon />}
             variant="contained"
-            style={{ padding: 0, marginRight: 10 }}
+            style={{ padding: 10, marginRight: 10 }}
             onClick={() => {
               if (tabValue === selectPropTab) {
                 setUpdatedSelectPropId(null);
@@ -292,7 +299,7 @@ const Properties = ({ match, history }) => {
               }
             }}
           >
-            New
+            Tạo thuộc tính
           </Button>
 
           <Stack
@@ -331,8 +338,8 @@ const Properties = ({ match, history }) => {
                 onChange={(e, newValue) => dispatch(selectTab(newValue))}
                 aria-label="lab API tabs example"
               >
-                <Tab label="Select Property" value={selectPropTab} />
-                <Tab label="Typing Property" value={typingPropTab} />
+                <Tab label="Thuộc tính chọn" value={selectPropTab} />
+                <Tab label="Thuộc tính nhập" value={typingPropTab} />
               </TabList>
             </Box>
             <TabPanel value={selectPropTab}>

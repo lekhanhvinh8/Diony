@@ -5,7 +5,7 @@ const apiEndpoint = apiUrl + "Admin/";
 
 export const getDateRevenue = async (date) => {
   const { data } = await http.get(apiEndpoint + "DateRevenueChart", {
-    params: { date },
+    params: { date: date.toLocaleString() },
   });
 
   return data;
@@ -13,7 +13,7 @@ export const getDateRevenue = async (date) => {
 
 export const getMonthRevenue = async (date) => {
   const { data } = await http.get(apiEndpoint + "MonthRevenueChart", {
-    params: { date },
+    params: { date: date.toLocaleString() },
   });
 
   return data;
@@ -21,7 +21,7 @@ export const getMonthRevenue = async (date) => {
 
 export const getYearRevenue = async (date) => {
   const { data } = await http.get(apiEndpoint + "YearRevenueChart", {
-    params: { date },
+    params: { date: date.toLocaleString() },
   });
 
   return data;
@@ -30,7 +30,19 @@ export const getYearRevenue = async (date) => {
 export const getDashboardInfo = async () => {
   const { data } = await http.get(apiEndpoint + "DashboardInfo");
 
-  const { totalProducts, totalSeller, totalRevenue, totalOrders } = data;
+  const {
+    totalProducts,
+    totalSeller,
+    totalRevenue,
+    totalOrders,
+    totalCustomers,
+  } = data;
 
-  return { totalProducts, totalSeller, totalRevenue, totalOrders };
+  return {
+    totalProducts,
+    totalSeller,
+    totalRevenue,
+    totalOrders,
+    totalCustomers,
+  };
 };

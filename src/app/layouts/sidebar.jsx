@@ -42,7 +42,6 @@ export default function Sidebar(props) {
       {routes.map((prop, key) => {
         if (!prop.name || !prop.icon) return null;
 
-        console.log(location.pathname);
         if (!location.pathname.includes(prop.layout + "/")) return null;
 
         const generatePath = () => {

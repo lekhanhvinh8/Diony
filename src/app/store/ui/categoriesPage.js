@@ -37,10 +37,10 @@ const getGridColumnWidth = () => {
 
 const cateGridColumns = [
   { field: idColumnField, headerName: "Id", width: idColumnWidth },
-  { field: nameColumnField, headerName: "Name", width: nameColumnWidth },
+  { field: nameColumnField, headerName: "Tên", width: nameColumnWidth },
   {
     field: statusColumnField,
-    headerName: "Visible",
+    headerName: "Nhìn thấy",
     width: statusColumnWidth,
     sortable: false,
     filterable: false,
@@ -48,7 +48,7 @@ const cateGridColumns = [
   },
   {
     field: updateColumnField,
-    headerName: "Detail",
+    headerName: "Chi tiết",
     width: updateColWidth,
     sortable: false,
     filterable: false,
@@ -56,7 +56,7 @@ const cateGridColumns = [
   },
   {
     field: buttonExpandColumnField,
-    headerName: "",
+    headerName: "Mở rộng",
     width: buttonExpandColumnWidth,
     sortable: false,
     filterable: false,

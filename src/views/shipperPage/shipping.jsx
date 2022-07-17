@@ -56,13 +56,13 @@ const Shipping = () => {
             <TableHead>
               <TableRow>
                 <TableCell align="center">Id</TableCell>
-                <TableCell align="center">Customer Name</TableCell>
-                <TableCell align="center">Customer Phone</TableCell>
-                <TableCell align="center">Delivery Address</TableCell>
-                <TableCell align="center">Pickup Date</TableCell>
-                <TableCell align="center">Collect Money</TableCell>
-                <TableCell align="center">Delivery</TableCell>
-                <TableCell align="center">Cancel</TableCell>
+                <TableCell align="center">Tên người nhận</TableCell>
+                <TableCell align="center">Số điện thoại</TableCell>
+                <TableCell align="center">Địa chỉ giao hàng</TableCell>
+                <TableCell align="center">Ngày lấy hàng</TableCell>
+                <TableCell align="center">Số tiền thu</TableCell>
+                <TableCell align="center">Giao hàng</TableCell>
+                <TableCell align="center">Hủy</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -112,7 +112,7 @@ const Shipping = () => {
                           setDeliveryDialogOpen(true);
                         }}
                       >
-                        Delivery
+                        Giao hàng
                       </Button>
                     </TableCell>
 
@@ -124,7 +124,7 @@ const Shipping = () => {
                           setCancelledDialogOpen(true);
                         }}
                       >
-                        Cancel
+                        Trở về
                       </Button>
                     </TableCell>
                   </TableRow>

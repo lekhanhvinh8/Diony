@@ -15,6 +15,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { formatMoney } from "./../../app/utils/formatMoney";
 import {
   reloadDateRevenue,
+  reloadMonthRevenue,
+  reloadYearRevenue,
   setPageNumber,
 } from "../../app/store/ui/revenueStatisticPage";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
@@ -30,15 +32,15 @@ const RevenueTable = ({ tabValue }) => {
   return (
     <Box>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table sx={{ minWidth: 650 }}>
           <TableHead>
             <TableRow>
-              <TableCell align="center">Id</TableCell>
-              <TableCell align="center">Delivery Date</TableCell>
-              <TableCell align="center">Shipper Id</TableCell>
-              <TableCell align="center">Revenue</TableCell>
+              <TableCell align="center">Mã đơn hàng</TableCell>
+              <TableCell align="center">Ngày giao hàng</TableCell>
+              <TableCell align="center">Mã Shipper</TableCell>
+              <TableCell align="center">Doanh thu</TableCell>
               {/* <TableCell align="center">Profit</TableCell> */}
-              <TableCell align="center">Detail</TableCell>
+              <TableCell align="center">Chi tiết</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -60,7 +62,7 @@ const RevenueTable = ({ tabValue }) => {
                   <TableCell align="center">{formatedDate}</TableCell>
                   <TableCell align="center">{shipperId}</TableCell>
                   <TableCell align="center">
-                    {formatMoney(totalMoney) + "đ"}
+                    {formatMoney(Math.round(totalMoney)) + "đ"}
                   </TableCell>
                   {/* <TableCell align="center">
                     {formatMoney((totalMoney * 3) / 100) + "đ"}
@@ -88,8 +90,9 @@ const RevenueTable = ({ tabValue }) => {
         page={pageNumber}
         onPageChange={(e, newPage) => {
           dispatch(setPageNumber(newPage));
-
           if (tabValue === "date") dispatch(reloadDateRevenue());
+          else if (tabValue === "month") dispatch(reloadMonthRevenue());
+          else if (tabValue === "year") dispatch(reloadYearRevenue());
         }}
         onRowsPerPageChange={() => {}}
       />

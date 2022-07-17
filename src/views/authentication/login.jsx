@@ -18,6 +18,7 @@ import { useState } from "react";
 import { LoadingButton } from "@mui/lab";
 import { getCurrentUser, login } from "../../app/services/authService";
 import { roleNames } from "../../config.json";
+import loginBackground from "../../app/layouts/images/login.jpg";
 
 const theme = createTheme();
 
@@ -96,7 +97,7 @@ export default function Login({ history }) {
           sm={4}
           md={7}
           sx={{
-            backgroundImage: "url(https://source.unsplash.com/random)",
+            backgroundImage: "url(" + loginBackground + ")",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -120,7 +121,7 @@ export default function Login({ history }) {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign in
+              Đăng nhập
             </Typography>
             <Box
               component="form"
@@ -154,10 +155,10 @@ export default function Login({ history }) {
                   type: "password",
                 }
               )}
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
-              />
+              /> */}
               <LoadingButton
                 type="submit"
                 fullWidth
@@ -166,14 +167,14 @@ export default function Login({ history }) {
                 loading={submitLoadding}
                 loadingPosition="end"
               >
-                Sign In
+                Đăng nhập
               </LoadingButton>
               <Grid container>
-                <Grid item xs>
+                {/* <Grid item xs>
                   <Link href="#" variant="body2">
                     Forgot password?
                   </Link>
-                </Grid>
+                </Grid> */}
                 <Grid item></Grid>
               </Grid>
             </Box>

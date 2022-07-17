@@ -3,11 +3,11 @@
     "typingPropertyTypeName": [
         {
             "codeName": "text",
-            "name": "Text"
+            "name": "Văn bản"
         }, 
         {
             "codeName": "date",
-            "name": "Date"
+            "name": "Ngày"
         }
     ],
     "roleNames": {
@@ -27,55 +27,55 @@
         "all": {
             "statusCode": null,
             "tabName": "all",
-            "label": "All"
+            "label": "Tất cả"
         },
         "pending": {
             "statusCode": "PENDING_APPROVAL",
             "tabName": "pending",
-            "label": "Pending",
-            "step": "Pending"
+            "label": "Chờ xác nhận",
+            "step": "Chờ xác nhận"
         },
         "toPrepare": {
             "statusCode": "TO_PREPARE",
             "tabName": "toPrepare",
-            "label": "To Prepare",
-            "step": "Preparing"
+            "label": "Chuẩn bị hàng",
+            "step": "Đã xác nhận"
         },
         "toPickup": {
             "statusCode": "TO_PICKUP",
             "tabName": "toPickup",
-            "label": "To Pickup",
-            "step": "Waiting for picking"
+            "label": "Chờ lấy hàng",
+            "step": "Đã chuẩn bị hàng"
         },
         "shipping": {
             "statusCode": "SHIPPING",
             "tabName": "shipping",
-            "label": "Shipping",
-            "step": "Shipping"
+            "label": "Đang giao",
+            "step": "Đang giao"
         },
         "shipped": {
             "statusCode": "SHIPPED",
             "tabName": "shipped",
-            "label": "Shipped",
-            "step": "Shipped"
+            "label": "Đã giao",
+            "step": "Đã giao"
         },
         "cancelled": {
             "statusCode": "CANCELLED",
             "tabName": "cancelled",
-            "label": "Cancelled",
-            "step": "Cancelled"
+            "label": "Đã hủy",
+            "step": "Đã hủy"
         }
     },
     "adminCancelledReasons": [
-        {"id": 1, "reason": "Invalid Order"},
-        {"id": 2, "reason": "Couldn't find a suitable shipper"},
-        {"id": 3, "reason": "Unreliable delivery address"},
-        {"id": 4, "reason": "Shipping method not available"},
-        {"id": 5, "reason": "orthers"}
+        {"id": 1, "reason": "Đơn hàng không hợp lệ"},
+        {"id": 2, "reason": "Không tìm được shipper phù hợp"},
+        {"id": 3, "reason": "Địa chỉ giao hàng không tin cậy"},
+        {"id": 4, "reason": "Phương thức giao hàng không có sẵn"},
+        {"id": 5, "reason": "Lý do khác"}
     ],
     "shipperCancelledReasons": [
-        {"id": 1, "reason": "Customer does not receive order"},
-        {"id": 2, "reason": "Item is lost"},
-        {"id": 3, "reason": "Item is broken"}
+        {"id": 1, "reason": "Khách hàng không nhận hàng"},
+        {"id": 2, "reason": "Đơn hàng bị mất"},
+        {"id": 3, "reason": "Đơn hàng bị hư hỏng, vỡ"}
     ]
 }

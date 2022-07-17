@@ -32,11 +32,11 @@ export default function CancelledDialog({
   return (
     <Box>
       <Dialog open={dialogOpen} onClose={() => setDialogOpen(false)}>
-        <DialogTitle>Are you sure to cancel an order ?</DialogTitle>
+        <DialogTitle>Bạn có chắc muốn hủy đơn hàng ?</DialogTitle>
         <DialogContent>
           <FormControl component="fieldset">
             <FormLabel component="legend">
-              Please select a reason for cancellation
+              Vui lòng chọn lý do hủy
             </FormLabel>
             <RadioGroup
               aria-label="gender"
@@ -60,7 +60,7 @@ export default function CancelledDialog({
           </FormControl>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setDialogOpen(false)}>Back</Button>
+          <Button onClick={() => setDialogOpen(false)}>Trở về</Button>
           <Button
             onClick={async () => {
               if (orderId) {
@@ -75,16 +75,16 @@ export default function CancelledDialog({
                   await dispatch(reloadOrders());
 
                   setDialogOpen(false);
-                  toast.success("Cancel an order successfully");
+                  toast.success("Hủy đơn hàng thành công");
                 } catch (ex) {
                   setDialogOpen(false);
-                  toast.error("Cancel an order failure");
+                  toast.error("Hủy đơn hàng thất bại");
                 }
               }
             }}
             autoFocus
           >
-            Confirm
+            Xác nhận
           </Button>
         </DialogActions>
       </Dialog>

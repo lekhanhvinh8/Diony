@@ -51,7 +51,7 @@ const TypingPropertyForm = ({ setDialogOpen, updatedPropId }) => {
     [nameField]: "",
     [descriptionField]: "",
     [typeField]: typeOptions[0].id,
-    [categoryField]: cateValue ? cateValue : "none",
+    [categoryField]: cateValue ? cateValue : "Không có",
   });
   const [errors, setErrors] = useState({});
 
@@ -111,7 +111,7 @@ const TypingPropertyForm = ({ setDialogOpen, updatedPropId }) => {
         )}
         {renderInput(
           nameField,
-          "Name",
+          "Tên",
           data[nameField],
           data,
           errors,
@@ -123,7 +123,7 @@ const TypingPropertyForm = ({ setDialogOpen, updatedPropId }) => {
         )}
         {renderInput(
           descriptionField,
-          "Description",
+          "Mô tả",
           data[descriptionField],
           data,
           errors,
@@ -159,7 +159,7 @@ const TypingPropertyForm = ({ setDialogOpen, updatedPropId }) => {
         {!updatedPropId &&
           renderInput(
             categoryField,
-            "Category",
+            "Danh mục",
             data[categoryField],
             data,
             errors,

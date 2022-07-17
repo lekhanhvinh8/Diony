@@ -34,7 +34,7 @@ const SelectPropertyGrid = ({
         maxWidth={"sm"}
       >
         <DialogTitle>
-          {updatedPropId ? "Update property" : "New caproperty"}
+          {updatedPropId ? "Cập nhật thuộc tính" : "Tạo thuộc tính mới"}
         </DialogTitle>
         <DialogContent>
           <SelectPropertyForm

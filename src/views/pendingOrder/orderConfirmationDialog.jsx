@@ -43,14 +43,14 @@ const OrderConfirmationDialog = ({ order, dialogOpen, setDialogOpen }) => {
       fullWidth={true}
       maxWidth={"sm"}
     >
-      <DialogTitle>Confirm Order</DialogTitle>
+      <DialogTitle>Xác nhận đơn hàng</DialogTitle>
       <DialogContent>
         {order && (
           <Box>
             <Box display="flex">
               <ArticleOutlinedIcon color="error" />
               <Typography fontWeight="bold" sx={{ ml: 1 }}>
-                Order Infomation
+                Thông tin đơn
               </Typography>
             </Box>
 
@@ -60,7 +60,7 @@ const OrderConfirmationDialog = ({ order, dialogOpen, setDialogOpen }) => {
             </Box>
 
             <Box display="flex">
-              <Box>Collection amount:</Box>
+              <Box>Số tiền thu:</Box>
               <Box sx={{ ml: 1 }}>
                 {order.paymentType === paymentMethod.paypal
                   ? "Online payment"
@@ -84,7 +84,7 @@ const OrderConfirmationDialog = ({ order, dialogOpen, setDialogOpen }) => {
                 findShipper();
               }
             }}
-            placeholder="Search by id, email, phone number"
+            placeholder="Tìm theo id, email, số điện thoại"
           />
           <IconButton onClick={findShipper}>
             <SearchIcon />
@@ -94,7 +94,7 @@ const OrderConfirmationDialog = ({ order, dialogOpen, setDialogOpen }) => {
           <Box display="flex">
             <PersonOutlineOutlinedIcon color="error" />
             <Typography fontWeight="bold" sx={{ ml: 1 }}>
-              Shipper Infomation
+              Thông tin Shipper
             </Typography>
           </Box>
           {shipper && (
@@ -105,7 +105,7 @@ const OrderConfirmationDialog = ({ order, dialogOpen, setDialogOpen }) => {
               </Box>
 
               <Box display="flex">
-                <Box>phone:</Box>
+                <Box>SDT:</Box>
                 <Box sx={{ ml: 1 }}>{shipper.appUser.phoneNumber}</Box>
               </Box>
 
@@ -115,7 +115,7 @@ const OrderConfirmationDialog = ({ order, dialogOpen, setDialogOpen }) => {
               </Box>
 
               <Box display="flex">
-                <Box>Name:</Box>
+                <Box>Tên:</Box>
                 <Box sx={{ ml: 1 }}>{shipper.appUser.name}</Box>
               </Box>
             </Box>
@@ -124,23 +124,23 @@ const OrderConfirmationDialog = ({ order, dialogOpen, setDialogOpen }) => {
       </DialogContent>
 
       <DialogActions>
-        <Button onClick={() => setDialogOpen(false)}>Cancel</Button>
+        <Button onClick={() => setDialogOpen(false)}>Hủy</Button>
         <Button
           onClick={async () => {
             try {
               await confirmOrder(order.id, shipper.id);
-              toast.success("Confirm order successfully");
+              toast.success("Xác nhận đơn hàng thành công");
 
               setSearchKey("");
               setDialogOpen(false);
               dispatch(reloadPendingOrders());
             } catch (ex) {
-              toast.error("An unexpected error has occurred");
+              toast.error("Lỗi không xác định");
             }
           }}
           disabled={!(order && shipper)}
         >
-          Confirm
+          Xác nhận
         </Button>
       </DialogActions>
     </Dialog>

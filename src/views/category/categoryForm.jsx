@@ -120,7 +120,7 @@ const CategoryForm = ({
         )}
         {renderInput(
           nameField,
-          "Name",
+          "Tên danh mục",
           name,
           getAllData(),
           errors,
@@ -130,7 +130,7 @@ const CategoryForm = ({
         )}
         {renderInput(
           descriptionField,
-          "Description",
+          "Mô tả",
           description,
           getAllData(),
           errors,
@@ -140,7 +140,7 @@ const CategoryForm = ({
         )}
         {renderInput(
           fatherField,
-          "Father",
+          "Danh mục cha",
           father,
           getAllData(),
           errors,
@@ -154,7 +154,7 @@ const CategoryForm = ({
             {!cateHasChildren && (
               <Link to={"/admin/properties/" + updatedCateId}>
                 <Button color="success" endIcon={<MiscellaneousServicesIcon />}>
-                  View Properties
+                  Xem thuộc tính
                 </Button>
               </Link>
             )}
@@ -167,14 +167,14 @@ const CategoryForm = ({
                 toast.success("Delete Successfully");
               }}
             >
-              Delete
+              Xóa
             </Button>
           </div>
         )}
       </form>
 
       <DialogActions>
-        <Button onClick={() => setDialogOpen(false)}>Cancel</Button>
+        <Button onClick={() => setDialogOpen(false)}>Hủy</Button>
         <Button
           disabled={validate(getAllData(), schema) ? true : false}
           onClick={() => {
@@ -182,7 +182,7 @@ const CategoryForm = ({
             setDialogOpen(false);
           }}
         >
-          Save
+          Lưu
         </Button>
       </DialogActions>
     </div>

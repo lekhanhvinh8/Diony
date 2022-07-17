@@ -43,11 +43,11 @@ const ToPickup = () => {
             <TableHead>
               <TableRow>
                 <TableCell align="center">Id</TableCell>
-                <TableCell align="center">Shop Name</TableCell>
-                <TableCell align="center">Shop Phone</TableCell>
-                <TableCell align="center">Pickup Address</TableCell>
-                <TableCell align="center">Appointment Time</TableCell>
-                <TableCell align="center">Action</TableCell>
+                <TableCell align="center">Tên Shop</TableCell>
+                <TableCell align="center">Số điện thoại</TableCell>
+                <TableCell align="center">Địa chỉ lấy hàng</TableCell>
+                <TableCell align="center">Ngày hẹn</TableCell>
+                <TableCell align="center">Hành động</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -90,7 +90,7 @@ const ToPickup = () => {
                           setDialogOpen(true);
                         }}
                       >
-                        Pickup
+                        Lấy hàng
                       </Button>
                     </TableCell>
                   </TableRow>

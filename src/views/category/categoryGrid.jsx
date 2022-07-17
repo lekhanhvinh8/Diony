@@ -133,7 +133,7 @@ const CategoryGrid = ({
         maxWidth={"sm"}
       >
         <DialogTitle>
-          {updatedCategoryId ? "Update category" : "New category"}
+          {updatedCategoryId != -1 ? "Cập nhật danh mục" : "Tạo danh mục mới"}
         </DialogTitle>
         <DialogContent>
           <CategoryForm
@@ -145,7 +145,7 @@ const CategoryGrid = ({
       </Dialog>
 
       <Button
-        style={{ width: 40 }}
+        style={{ marginTop: 10, marginBottom: 10 }}
         size="small"
         variant="contained"
         endIcon={<AddIcon />}
@@ -154,7 +154,7 @@ const CategoryGrid = ({
           setDialogOpen(true);
         }}
       >
-        new
+        Tạo Danh Mục
       </Button>
 
       <div style={{ height: 410, width: "100%" }}>

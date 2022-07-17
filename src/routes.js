@@ -25,6 +25,8 @@ import ElectricRickshawIcon from "@mui/icons-material/ElectricRickshaw";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import DoneOutlineIcon from "@mui/icons-material/DoneOutline";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import LocalActivityIcon from "@mui/icons-material/LocalActivity";
+import CachedOutlinedIcon from "@mui/icons-material/CachedOutlined";
 
 // core components/views for Admin layout
 import DashboardPage from "./views/dashboard/dashboard";
@@ -38,7 +40,10 @@ import Shipping from "./views/shipperPage/shipping";
 import Shipped from "./views/shipperPage/shipped";
 import RevenueStatistic from "./views/revenueStatistic/revenueStatistic";
 import Orders from "./views/orders/orders";
-import Done from './views/shipperPage/done';
+import Done from "./views/shipperPage/done";
+import Discount from "./views/discount/discount";
+import DiscountCreation from "./views/discount/discountCreation";
+import Transactions from "./views/transactions/transactions";
 
 const dashboardRoutes = [
   {
@@ -50,28 +55,28 @@ const dashboardRoutes = [
   },
   {
     path: "/categories",
-    name: "Category",
+    name: "Danh mục",
     icon: Category,
     component: Categories,
     layout: "/admin",
   },
   {
     path: "/properties/:cateId",
-    name: "Property",
+    name: "Thuộc tính",
     icon: MiscellaneousServicesIcon,
     component: Properties,
     layout: "/admin",
   },
   {
     path: "/pending/",
-    name: "Pending Orders",
+    name: "Đơn chờ xác nhận",
     icon: PendingActionsIcon,
     component: PendingOrders,
     layout: "/admin",
   },
   {
     path: "/orders/",
-    name: "Orders",
+    name: "Quản lý đơn hàng",
     icon: PendingActionsIcon,
     component: Orders,
     layout: "/admin",
@@ -84,10 +89,24 @@ const dashboardRoutes = [
     layout: "/admin",
   },
   {
+    path: "/discount",
+    name: "Mã giảm giá",
+    icon: LocalActivityIcon,
+    component: Discount,
+    layout: "/admin",
+  },
+  {
     path: "/revenue",
-    name: "Revenue",
+    name: "Doanh thu",
     icon: AttachMoneyIcon,
     component: RevenueStatistic,
+    layout: "/admin",
+  },
+  {
+    path: "/transactions",
+    name: "Giao dịch",
+    icon: CachedOutlinedIcon,
+    component: Transactions,
     layout: "/admin",
   },
   {
@@ -96,22 +115,27 @@ const dashboardRoutes = [
     layout: "/admin",
   },
   {
+    path: "/createDiscount",
+    component: DiscountCreation,
+    layout: "/admin",
+  },
+  {
     path: "/toPickup",
-    name: "To Pickup",
+    name: "Lấy hàng",
     icon: ElectricRickshawIcon,
     component: ToPickup,
     layout: "/shipper",
   },
   {
     path: "/shipping",
-    name: "Shipping",
+    name: "Đang giao",
     icon: LocalShippingIcon,
     component: Shipping,
     layout: "/shipper",
   },
   {
     path: "/done",
-    name: "Done",
+    name: "Đã giao",
     icon: DoneOutlineIcon,
     component: Done,
     layout: "/shipper",

@@ -234,8 +234,8 @@ const CategoriesDialog = ({ dialogOpen, setDialogOpen, propId, openMode }) => {
     >
       <DialogTitle>
         {openMode === categoryOpenMode.selectPropMode
-          ? selectProperty && "Categories of" + selectProperty.name
-          : typingProperty && "Categories of" + typingProperty.name}
+          ? selectProperty && "Danh mục của: " + selectProperty.name
+          : typingProperty && "Danh mục của: " + typingProperty.name}
       </DialogTitle>
       <DialogContent>
         <List sx={{ width: "100%", bgcolor: "background.paper" }}>

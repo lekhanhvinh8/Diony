@@ -32,6 +32,7 @@ import CardHeader from "../../app/layouts/common/Card/CardHeader";
 import CardIcon from "../../app/layouts/common/Card/CardIcon";
 import CardBody from "../../app/layouts/common/Card/CardBody";
 import CardFooter from "../../app/layouts/common/Card/CardFooter";
+import PeopleIcon from "@mui/icons-material/People";
 
 import { bugs, website, server } from "../../app/variables/general";
 
@@ -57,20 +58,38 @@ export default function Dashboard() {
     totalSeller: 0,
     totalRevenue: 0,
     totalOrders: 0,
+    totalCustomers: 0,
   });
 
   useEffect(() => {
     const asyncFunc = async () => {
-      const { totalProducts, totalSeller, totalRevenue, totalOrders } =
-        await getDashboardInfo();
+      const {
+        totalProducts,
+        totalSeller,
+        totalRevenue,
+        totalOrders,
+        totalCustomers,
+      } = await getDashboardInfo();
 
-      setData({ totalProducts, totalSeller, totalRevenue, totalOrders });
+      setData({
+        totalProducts,
+        totalSeller,
+        totalRevenue,
+        totalOrders,
+        totalCustomers,
+      });
     };
 
     asyncFunc();
-  });
+  }, []);
 
-  const { totalProducts, totalSeller, totalRevenue, totalOrders } = data;
+  const {
+    totalProducts,
+    totalSeller,
+    totalRevenue,
+    totalOrders,
+    totalCustomers,
+  } = data;
 
   return (
     <div>
@@ -83,7 +102,7 @@ export default function Dashboard() {
                   <SmartphoneIcon />
                 </Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Total Products</p>
+              <p className={classes.cardCategory}>Tổng sản phẩm</p>
               <h3 className={classes.cardTitle}>{totalProducts}</h3>
             </CardHeader>
             <CardFooter stats>
@@ -104,8 +123,25 @@ export default function Dashboard() {
               <CardIcon color="success">
                 <Store />
               </CardIcon>
-              <p className={classes.cardCategory}>Total Shops</p>
+              <p className={classes.cardCategory}>Tổng người bán</p>
               <h3 className={classes.cardTitle}>{totalSeller}</h3>
+            </CardHeader>
+            <CardFooter stats>
+              {/* <div className={classes.stats}>
+                <DateRange />
+                Last 24 Hours
+              </div> */}
+            </CardFooter>
+          </Card>
+        </GridItem>
+        <GridItem xs={12} sm={6} md={3}>
+          <Card>
+            <CardHeader color="success" stats icon>
+              <CardIcon color="success">
+                <PeopleIcon />
+              </CardIcon>
+              <p className={classes.cardCategory}>Tổng người mua</p>
+              <h3 className={classes.cardTitle}>{totalCustomers}</h3>
             </CardHeader>
             <CardFooter stats>
               {/* <div className={classes.stats}>
@@ -123,7 +159,7 @@ export default function Dashboard() {
                   <NoteAddIcon />
                 </Icon>
               </CardIcon>
-              <p className={classes.cardCategory}>Total Orders</p>
+              <p className={classes.cardCategory}>Tổng đơn hàng</p>
               <h3 className={classes.cardTitle}>{totalOrders}</h3>
             </CardHeader>
             <CardFooter stats>
@@ -134,13 +170,15 @@ export default function Dashboard() {
             </CardFooter>
           </Card>
         </GridItem>
-        <GridItem xs={12} sm={6} md={3}>
+      </GridContainer>
+      <GridContainer>
+        <GridItem xs={12} sm={6} md={12}>
           <Card>
             <CardHeader color="info" stats icon>
               <CardIcon color="info">
                 <AttachMoneyIcon />
               </CardIcon>
-              <p className={classes.cardCategory}>Total Revenue</p>
+              <p className={classes.cardCategory}>Tổng doanh thu</p>
               <h3 className={classes.cardTitle}>
                 {formatMoney(totalRevenue) + "đ"}
               </h3>

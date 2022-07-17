@@ -25,8 +25,11 @@ export const getFilteredOrders = async (
       orderDate: order.orderDate,
       shopId: order.shopId,
       shopName: order.shopName,
+      shipperMail: order.shipperMail,
+      shipperName: order.shipperName,
       total: order.total,
       shippingCost: order.shipFee,
+      shippingCostDiscount: order.shippingCostDiscount,
       paymentType: order.paymentType,
       items: order.items.map((item) => {
         const orderItem = {
@@ -204,5 +207,11 @@ export const shipperCancelOrder = async (orderId, reason) => {
       orderId,
       reason,
     },
+  });
+};
+
+export const adminApproveAllOrder = async (beforeDate) => {
+  await http.get(apiUrl + "Admin/ApproveAllPendingOrders", {
+    params: { beforeDate: new Date(beforeDate) },
   });
 };

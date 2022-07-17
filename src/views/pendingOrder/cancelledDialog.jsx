@@ -28,9 +28,7 @@ export default function CancelledDialog({ order, dialogOpen, setDialogOpen }) {
         <DialogTitle>Are you sure to cancel an order ?</DialogTitle>
         <DialogContent>
           <FormControl component="fieldset">
-            <FormLabel component="legend">
-              Please select a reason for cancellation
-            </FormLabel>
+            <FormLabel component="legend">Chọn lý do hủy</FormLabel>
             <RadioGroup
               aria-label="gender"
               name="controlled-radio-buttons-group"
@@ -53,7 +51,7 @@ export default function CancelledDialog({ order, dialogOpen, setDialogOpen }) {
           </FormControl>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setDialogOpen(false)}>Back</Button>
+          <Button onClick={() => setDialogOpen(false)}>Trở về</Button>
           <Button
             onClick={async () => {
               if (order) {
@@ -67,16 +65,16 @@ export default function CancelledDialog({ order, dialogOpen, setDialogOpen }) {
                   dispatch(reloadPendingOrders());
 
                   setDialogOpen(false);
-                  toast.success("Cancel an order successfully");
+                  toast.success("Hủy đơn hàng thành công");
                 } catch (ex) {
                   setDialogOpen(false);
-                  toast.error("Cancel an order failure");
+                  toast.error("Hủy đon hàng thất bại");
                 }
               }
             }}
             autoFocus
           >
-            Confirm
+            Xác nhận hủy
           </Button>
         </DialogActions>
       </Dialog>

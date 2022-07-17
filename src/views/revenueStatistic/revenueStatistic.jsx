@@ -62,6 +62,7 @@ const RevenueStatistic = () => {
               <TabList
                 variant="fullWidth"
                 onChange={(event, newValue) => {
+                  dispatch(setPageNumber(0));
                   setTabValue(newValue);
                 }}
               >
@@ -74,7 +75,9 @@ const RevenueStatistic = () => {
               <Box width="100%" display="flex" alignItems="center">
                 <Box flexGrow={1}>
                   <Typography color="red" fontWeight="bold" fontSize={20}>
-                    {"Total revenue: " + formatMoney(totalDateRevenue) + "đ"}
+                    {"Tổng doanh thu: " +
+                      formatMoney(Math.round(totalDateRevenue)) +
+                      "đ"}
                   </Typography>
                 </Box>
 
@@ -82,7 +85,7 @@ const RevenueStatistic = () => {
                   <DatePicker
                     variant="inline"
                     inputVariant="outlined"
-                    label="Pick date"
+                    label="Chọn ngày"
                     format="MM/dd/yyyy"
                     value={selectedDate}
                     InputAdornmentProps={{ position: "end" }}
@@ -107,7 +110,9 @@ const RevenueStatistic = () => {
               <Box width="100%" display="flex" alignItems="center">
                 <Box flexGrow={1}>
                   <Typography color="red" fontWeight="bold" fontSize={20}>
-                    {"Total revenue: " + formatMoney(totalMonthRevenue) + "đ"}
+                    {"Tổng doanh thu: " +
+                      formatMoney(Math.round(totalMonthRevenue)) +
+                      "đ"}
                   </Typography>
                 </Box>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -115,7 +120,7 @@ const RevenueStatistic = () => {
                     views={["year", "month"]}
                     variant="inline"
                     inputVariant="outlined"
-                    label="Pick month"
+                    label="Chọn tháng"
                     value={selectedMonth}
                     InputAdornmentProps={{ position: "end" }}
                     renderInput={(params) => <TextField {...params} />}
@@ -133,7 +138,9 @@ const RevenueStatistic = () => {
               <Box width="100%" display="flex" alignItems="center">
                 <Box flexGrow={1}>
                   <Typography color="red" fontWeight="bold" fontSize={20}>
-                    {"Total revenue: " + formatMoney(totalYearRevenue) + "đ"}
+                    {"Tổng doanh thu: " +
+                      formatMoney(Math.round(totalYearRevenue)) +
+                      "đ"}
                   </Typography>
                 </Box>
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -141,7 +148,7 @@ const RevenueStatistic = () => {
                     views={["year"]}
                     variant="inline"
                     inputVariant="outlined"
-                    label="Pick year"
+                    label="Chọn năm"
                     value={selectedYear}
                     InputAdornmentProps={{ position: "end" }}
                     renderInput={(params) => <TextField {...params} />}

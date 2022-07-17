@@ -17,19 +17,19 @@ const PaymentInfo = () => {
     <Box>
       {order.paymentType === paymentMethod.paypal ? (
         <Box>
-          <Typography>{"Payment Method: Paypal"}</Typography>
+          <Typography>{"Phương thức thanh toán: Paypal"}</Typography>
           <Box sx={{ mt: 1 }} display="flex" alignItems="center">
-            <Typography>Status: </Typography>
+            <Typography>Trạng thái: </Typography>
             {order.isPaid ? (
               <Chip
-                label="Paid"
+                label="Đã thanh toán"
                 variant="outlined"
                 color="primary"
                 sx={{ ml: 1 }}
               />
             ) : (
               <Chip
-                label="Unpaid"
+                label="Chưa thanh toán"
                 variant="outlined"
                 color="error"
                 sx={{ ml: 1 }}
@@ -37,12 +37,12 @@ const PaymentInfo = () => {
             )}
           </Box>
           <Typography sx={{ mt: 1 }}>
-            {formatedDate ? "Payment Date: " + formatedDate : null}
+            {formatedDate ? "Ngày thanh toán: " + formatedDate : null}
           </Typography>
         </Box>
       ) : (
         <Box>
-          <Typography>{"Payment Method: COD"}</Typography>
+          <Typography>{"Phương thức thanh toán: COD"}</Typography>
         </Box>
       )}
     </Box>

@@ -8,6 +8,13 @@ import {
   TableBody,
   TablePagination,
   Paper,
+  DialogContent,
+  DialogContentText,
+  Dialog,
+  DialogTitle,
+  Button,
+  DialogActions,
+  TextField,
 } from "@mui/material";
 import { IconButton } from "@mui/material";
 import { format } from "date-fns";
@@ -27,6 +34,10 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Link } from "react-router-dom";
 import OrderConfirmationDialog from "./orderConfirmationDialog";
 import CancelledDialog from "./cancelledDialog";
+import { LoadingButton } from "@mui/lab";
+import { adminApproveAllOrder } from "../../app/services/orderService";
+import { dateToLocaleString } from "../../app/utils/formatDate";
+import { toast } from "react-toastify";
 
 const PendingOrders = ({ history }) => {
   const dispatch = useDispatch();
@@ -37,11 +48,16 @@ const PendingOrders = ({ history }) => {
   const pageNumber = useSelector((state) => state.ui.pendingOrders.pageNumber);
   const pageSize = useSelector((state) => state.ui.pendingOrders.pageSize);
 
+  const [aprroveAllDialogOpen, setApproveAllDialogOpen] = useState(false);
+  const [beforeDate, setBeforeDate] = useState(dateToLocaleString(new Date()));
+
   const [confirmationOrder, setConfirmationOrder] = useState(null);
   const [confirmationDialogOpen, setConfirmationDialogOpen] = useState(false);
 
   const [cancelledOrder, setCancelledOrder] = useState(null);
   const [cancelledDialogOpen, setCancelledDialogOpen] = useState(false);
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     dispatch(reloadPendingOrders(pageSize));
@@ -59,20 +75,92 @@ const PendingOrders = ({ history }) => {
         dialogOpen={cancelledDialogOpen}
         setDialogOpen={setCancelledDialogOpen}
       />
-      <Paper>
+
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-end",
+          alignItems: "center",
+        }}
+      >
+        <Dialog
+          open={aprroveAllDialogOpen}
+          onClose={() => {
+            setApproveAllDialogOpen(false);
+          }}
+        >
+          <DialogTitle>{"Xác nhận toàn bộ đơn"}</DialogTitle>
+          <DialogContent>
+            <TextField
+              id="datetime-local"
+              label="Trước ngày"
+              type="datetime-local"
+              defaultValue={beforeDate}
+              sx={{ width: 250, marginTop: 1 }}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={(e) => {
+                setBeforeDate(e.currentTarget.value);
+              }}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                setApproveAllDialogOpen(false);
+              }}
+            >
+              Hủy
+            </Button>
+            <Button
+              onClick={async () => {
+                setLoading(true);
+                try {
+                  await adminApproveAllOrder(beforeDate);
+                  dispatch(reloadPendingOrders(pageSize, pageNumber));
+                  setLoading(false);
+                  toast.success("Xác nhận tất cả đơn hàng thành công");
+                } catch (error) {
+                  setLoading(false);
+                }
+                setApproveAllDialogOpen(false);
+              }}
+              autoFocus
+            >
+              Xác nhận
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+        <LoadingButton
+          variant="contained"
+          color="error"
+          loading={loading}
+          onClick={async () => {
+            var minutes30ago = new Date();
+            minutes30ago.setMinutes(minutes30ago.getMinutes() - 30);
+            setBeforeDate(dateToLocaleString(minutes30ago));
+            setApproveAllDialogOpen(true);
+          }}
+        >
+          Xác nhận tất cả !
+        </LoadingButton>
+      </Box>
+      <Paper sx={{ marginTop: 2 }}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
                 <TableCell align="center">Id</TableCell>
-                <TableCell align="center">Shop Name</TableCell>
-                <TableCell align="center">Total</TableCell>
-                <TableCell align="center">Date Ordered</TableCell>
-                <TableCell align="center">Payment Type</TableCell>
-                <TableCell align="center">Is Paid</TableCell>
-                <TableCell align="center">Approve</TableCell>
-                <TableCell align="center">Deny</TableCell>
-                <TableCell align="center">Detail</TableCell>
+                <TableCell align="center">Tên shop</TableCell>
+                <TableCell align="center">Tổng tiền</TableCell>
+                <TableCell align="center">Ngày đặt hàng</TableCell>
+                <TableCell align="center">Loại thanh toán</TableCell>
+                <TableCell align="center">Đã thanh toán</TableCell>
+                <TableCell align="center">Xác nhận</TableCell>
+                <TableCell align="center">Hủy</TableCell>
+                <TableCell align="center">Chi tiết</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -98,7 +186,13 @@ const PendingOrders = ({ history }) => {
                     </TableCell>
                     <TableCell align="center">{order.shopName}</TableCell>
                     <TableCell align="center">
-                      {formatMoney(order.total + order.shipFee) + "đ"}
+                      {formatMoney(
+                        Math.round(
+                          order.total +
+                            order.shipFee -
+                            order.shippingCostDiscount
+                        )
+                      ) + "đ"}
                     </TableCell>
                     <TableCell align="center">{formatedDate}</TableCell>
                     <TableCell align="center">{order.paymentType}</TableCell>
@@ -118,7 +212,6 @@ const PendingOrders = ({ history }) => {
                     <TableCell align="center">
                       <IconButton
                         onClick={() => {
-                          console.log("CANCELELD");
                           setCancelledOrder(order);
                           setCancelledDialogOpen(true);
                         }}

@@ -48,7 +48,7 @@ const OrderInfo = () => {
         <Box display="flex">
           <PersonOutlinedIcon color="error" />
           <Box sx={{ ml: 1 }}>
-            <Typography fontWeight="bold">Cusomter Info</Typography>
+            <Typography fontWeight="bold">Thông tin khách hàng</Typography>
             <Avatar
               sx={{ width: 50, height: 50 }}
               alt={"defaultAvatar"}
@@ -58,7 +58,7 @@ const OrderInfo = () => {
               {"Email: " + order.customerEmail}
             </Typography>
             <Typography sx={{ mt: 1 }}>
-              {"Phone Number: " + order.customerPhoneNumber}
+              {"Số điện thoại: " + order.customerPhoneNumber}
             </Typography>
           </Box>
         </Box>
@@ -68,17 +68,17 @@ const OrderInfo = () => {
           <StorefrontOutlinedIcon color="error" />
 
           <Box sx={{ ml: 1 }}>
-            <Typography fontWeight="bold">Shop Info</Typography>
+            <Typography fontWeight="bold">Thông tin Shop</Typography>
             <Avatar
               sx={{ width: 50, height: 50 }}
               alt={"defaultAvatar"}
               src={order?.shopAvatar ? order.shopAvatar : defaultAvatar}
             />
             <Typography sx={{ mt: 1 }}>
-              {"Shop's Name: " + order.shopName}
+              {"Tên Shop: " + order.shopName}
             </Typography>
             <Typography sx={{ mt: 1 }}>
-              {"Phone Number: " + order.shopPhoneNumber}
+              {"Số điện thoại: " + order.shopPhoneNumber}
             </Typography>
           </Box>
         </Box>
@@ -87,7 +87,7 @@ const OrderInfo = () => {
         <Box display="flex">
           <Grid3x3OutlinedIcon color="error" />
           <Box sx={{ ml: 1 }}>
-            <Typography fontWeight="bold">Order ID</Typography>
+            <Typography fontWeight="bold">Mã đơn hàng</Typography>
             <Typography sx={{ mt: 1 }} fontSize={15}>
               {order.id}
             </Typography>
@@ -97,12 +97,12 @@ const OrderInfo = () => {
         <Box display="flex" sx={{ mt: 2 }}>
           <LocalShippingOutlinedIcon color="error" />
           <Box sx={{ ml: 1 }}>
-            <Typography fontWeight="bold">Shipping Info</Typography>
+            <Typography fontWeight="bold">Thông tin vận chuyển</Typography>
             <Typography sx={{ mt: 1 }}>
-              {"Pick up address: " + order.pickupAddress}
+              {"Điểm lấy hàng: " + order.pickupAddress}
             </Typography>
             <Typography sx={{ mt: 1 }}>
-              {"Delivery address: " + order.deliveryAddress}
+              {"Điểm giao hàng: " + order.deliveryAddress}
             </Typography>
           </Box>
         </Box>
@@ -110,7 +110,7 @@ const OrderInfo = () => {
         <Box display="flex" sx={{ mt: 2 }}>
           <AccessTimeOutlinedIcon color="error" />
           <Box sx={{ ml: 1 }}>
-            <Typography fontWeight="bold">Order Time</Typography>
+            <Typography fontWeight="bold">Thời gian đặt hàng</Typography>
             <Typography sx={{ mt: 1 }}>{formatedDate}</Typography>
           </Box>
         </Box>
@@ -121,7 +121,7 @@ const OrderInfo = () => {
           <PaidOutlinedIcon color="error" />
 
           <Box sx={{ ml: 1, width: "100%" }}>
-            <Typography fontWeight="bold">Items Info</Typography>
+            <Typography fontWeight="bold">Thông tin vật phẩm</Typography>
             <Box sx={{ mt: 1 }}>
               <ItemInfo />
             </Box>
@@ -134,7 +134,7 @@ const OrderInfo = () => {
           <PaymentsIcon color="error" />
 
           <Box sx={{ ml: 1, width: "100%" }}>
-            <Typography fontWeight="bold">Payment Info</Typography>
+            <Typography fontWeight="bold">Thông tin thanh toán</Typography>
             <Box sx={{ mt: 1 }}>
               <PaymentInfo />
             </Box>

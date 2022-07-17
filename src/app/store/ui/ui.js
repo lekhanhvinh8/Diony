@@ -9,6 +9,8 @@ import shippingOrderReducer from "./shippingOrderPage";
 import revenueStatisticPageReducer from "./revenueStatisticPage";
 import ordersPageReducer from "./ordersPage";
 import doneOrderPageReducer from "./doneOrderPage";
+import discountPageReducer from "./discount";
+import transactionPageReducer from "./transactionPage";
 
 export default combineReducers({
   categoriesPage: categoriesPageReducer,
@@ -21,4 +23,6 @@ export default combineReducers({
   revenueStatisticPage: revenueStatisticPageReducer,
   ordersPage: ordersPageReducer,
   doneOrderPage: doneOrderPageReducer,
+  discountPage: discountPageReducer,
+  transactionPage: transactionPageReducer,
 });

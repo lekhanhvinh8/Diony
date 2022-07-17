@@ -33,7 +33,7 @@ export default function SearchBar(props) {
         </IconButton>
         <InputBase
           sx={{ ml: 1, flex: 1 }}
-          placeholder="Find orders by id, product name, shop name"
+          placeholder="Tìm theo Id, tên sản phẩm, tên shop"
           fullWidth
           value={searchKey}
           onChange={(e) => {

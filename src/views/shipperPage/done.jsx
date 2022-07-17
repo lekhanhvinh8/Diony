@@ -43,12 +43,12 @@ const Done = () => {
             <TableHead>
               <TableRow>
                 <TableCell align="center">Id</TableCell>
-                <TableCell align="center">Customer Name</TableCell>
-                <TableCell align="center">Customer Phone</TableCell>
-                <TableCell align="center">Delivery Address</TableCell>
-                <TableCell align="center">Action</TableCell>
-                <TableCell align="center">Action Date</TableCell>
-                <TableCell align="center">Collect Money</TableCell>
+                <TableCell align="center">Tên khách hàng</TableCell>
+                <TableCell align="center">Số điện thoại</TableCell>
+                <TableCell align="center">Địa chỉ giao hàng</TableCell>
+                <TableCell align="center">Hành động</TableCell>
+                <TableCell align="center">Ngày</TableCell>
+                <TableCell align="center">Số tiền thu</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>

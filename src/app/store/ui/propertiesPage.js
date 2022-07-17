@@ -45,12 +45,12 @@ const initialSelectPropertiesColumns = [
   },
   {
     field: selectPropNameColumnField,
-    headerName: "Name",
+    headerName: "Tên thuộc tính",
     width: selectPropNameColumnWidth,
   },
   {
     field: selectPropIsRequiredColumnField,
-    headerName: "",
+    headerName: "Bắt buộc",
     width: selectPropIsRequiredColumnWidth,
     sortable: false,
     disableColumnMenu: true,
@@ -58,7 +58,7 @@ const initialSelectPropertiesColumns = [
   },
   {
     field: selectPropHasMultiValuesColumnField,
-    headerName: "",
+    headerName: "Loại",
     width: selectPropHasMultiValuesColumnWidth,
     sortable: false,
     disableColumnMenu: true,
@@ -66,7 +66,7 @@ const initialSelectPropertiesColumns = [
   },
   {
     field: selectPropCateIdsColumnField,
-    headerName: "",
+    headerName: "Danh mục",
     width: selectPropCateIdsColumnWidth,
     sortable: false,
     disableColumnMenu: true,
@@ -74,7 +74,7 @@ const initialSelectPropertiesColumns = [
   },
   {
     field: selectPropValuesColumnField,
-    headerName: "",
+    headerName: "Giá trị",
     width: selectPropValuesColumnWidth,
     sortable: false,
     disableColumnMenu: true,
@@ -82,7 +82,7 @@ const initialSelectPropertiesColumns = [
   },
   {
     field: selectPropEditColumnField,
-    headerName: "",
+    headerName: "Cập nhật",
     width: selectPropEditColumnWidth,
     sortable: false,
     disableColumnMenu: true,
@@ -107,12 +107,12 @@ const initialTypingPropertiesColumns = [
   },
   {
     field: typingPropNameColumnField,
-    headerName: "Name",
+    headerName: "Tên",
     width: typingPropNameColumnWidth,
   },
   {
     field: typingPropTypeColumnField,
-    headerName: "Type",
+    headerName: "Loại",
     width: typingPropTypeColumnWidth,
     sortable: false,
     disableColumnMenu: true,
@@ -121,7 +121,7 @@ const initialTypingPropertiesColumns = [
   },
   {
     field: typingPropCateIdsColumnField,
-    headerName: "",
+    headerName: "Danh mục",
     width: typingPropCateIdsColumnWidth,
     sortable: false,
     disableColumnMenu: true,
@@ -129,7 +129,7 @@ const initialTypingPropertiesColumns = [
   },
   {
     field: typingPropEditColumnField,
-    headerName: "",
+    headerName: "Cập nhật",
     width: typingPropEditColumnWidth,
     sortable: false,
     disableColumnMenu: true,

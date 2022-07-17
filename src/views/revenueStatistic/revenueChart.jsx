@@ -112,7 +112,7 @@ const RevenueChart = () => {
 
   return (
     <Card>
-      <CardHeader title={"Revenue"} />
+      <CardHeader title={"Doanh thu"} />
       <CardContent>
         <Box>
           <TabContext value={tabValue}>
@@ -123,9 +123,9 @@ const RevenueChart = () => {
                   setTabValue(newValue);
                 }}
               >
-                <Tab label="Date" value="date" />
-                <Tab label="Month" value="month" />
-                <Tab label="Year" value="year" />
+                <Tab label="Ngày" value="date" />
+                <Tab label="Tháng" value="month" />
+                <Tab label="Năm" value="year" />
               </TabList>
             </Box>
             <TabPanel value="date">
@@ -134,7 +134,7 @@ const RevenueChart = () => {
                   <DatePicker
                     variant="inline"
                     inputVariant="outlined"
-                    label="Pick date"
+                    label="Chọn ngày"
                     format="MM/dd/yyyy"
                     value={selectedDate}
                     InputAdornmentProps={{ position: "end" }}
@@ -163,7 +163,7 @@ const RevenueChart = () => {
                   >
                     <Line type="monotone" dataKey="revenue" stroke="#8884d8" />
                     <XAxis dataKey="name">
-                      <Label value="hours" offset={0} position="bottom" />
+                      <Label value="Giờ" offset={0} position="bottom" />
                     </XAxis>
                     <YAxis unit="đ" />
                     <Tooltip />
@@ -198,7 +198,7 @@ const RevenueChart = () => {
                   >
                     <Line type="monotone" dataKey="revenue" stroke="#8884d8" />
                     <XAxis dataKey="name">
-                      <Label value="days" offset={0} position="bottom" />
+                      <Label value="Ngày" offset={0} position="bottom" />
                     </XAxis>
                     <YAxis unit="đ" />
                     <Tooltip />
@@ -233,7 +233,7 @@ const RevenueChart = () => {
                   >
                     <Line type="monotone" dataKey="revenue" stroke="#8884d8" />
                     <XAxis dataKey="name">
-                      <Label value="months" offset={0} position="bottom" />
+                      <Label value="tháng" offset={0} position="bottom" />
                     </XAxis>
                     <YAxis unit="đ" />
                     <Tooltip />

@@ -19,16 +19,16 @@ const Shippers = () => {
     <Box>
       <Button
         endIcon={<PersonAddAltIcon />}
-        variant="outlined"
+        variant="contained"
         color="primary"
         onClick={() => {
           setDialogOpen(true);
         }}
       >
-        Create Shipper
+        Tạo tài khoản shipper
       </Button>
       <ShipperDialog dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} />
-      <Box sx={{ mt: 1 }}>
+      <Box sx={{ mt: 2 }}>
         <ShipperList />
       </Box>
     </Box>

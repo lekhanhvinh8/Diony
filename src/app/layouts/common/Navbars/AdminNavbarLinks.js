@@ -17,7 +17,7 @@ import Dashboard from "@material-ui/icons/Dashboard";
 import Search from "@material-ui/icons/Search";
 // core components
 import CustomInput from "../customInput";
-import Button from "../Button";
+import Button from "../button";
 
 import styles from "../../jss/material-dashboard-react/components/headerLinksStyle";
 import { logout } from "../../../services/authService";
@@ -202,7 +202,7 @@ export default function AdminNavbarLinks() {
                       }}
                       className={classes.dropdownItem}
                     >
-                      Logout
+                      Đăng xuất
                     </MenuItem>
                   </MenuList>
                 </ClickAwayListener>
